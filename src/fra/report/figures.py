@@ -127,7 +127,7 @@ def _kobe_plot(assessments: list[AssessmentRecord], out: Path) -> FigureRef | No
     fig.colorbar(sc, ax=ax, label="Year")
     ax.set_xlabel("B / B_MSY")
     ax.set_ylabel("F / F_MSY")
-    ax.set_title("Kobe plot — stock status trajectory")
+    ax.set_title("Kobe plot - stock status trajectory")
     ax.set_xlim(left=0)
     ax.set_ylim(bottom=0)
     path = out / "fig-kobe.png"

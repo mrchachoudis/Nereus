@@ -1,4 +1,4 @@
-# Fisheries Research Report — run `20260710T115836-a3c812`
+# Fisheries Research Report - run `20260710T115836-a3c812`
 
 **Question:** Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020
 
@@ -40,10 +40,10 @@ As of 2020, Merluccius merluccius in 37.2 is classified 'both': biomass below B_
 
 ## Environmental drivers
 
-SST lags landings by 1 yr at peak association (r=-0.97, Bonferroni-adjusted p=3.73e-05). Associational only — not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=10 aligned observations. [A4]
-SST lags SSB by 1 yr at peak association (r=-0.98, Bonferroni-adjusted p=1.34e-05). Associational only — not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=10 aligned observations. [A5]
-CHLOR_A is concurrent with landings at peak association (r=0.83, Bonferroni-adjusted p=0.0139). Associational only — not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=11 aligned observations. [A6]
-CHLOR_A lags SSB by 4 yr at peak association (r=0.87, Bonferroni-adjusted p=0.098). Associational only — not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=7 aligned observations. [A7]
+SST lags landings by 1 yr at peak association (r=-0.97, Bonferroni-adjusted p=3.73e-05). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=10 aligned observations. [A4]
+SST lags SSB by 1 yr at peak association (r=-0.98, Bonferroni-adjusted p=1.34e-05). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=10 aligned observations. [A5]
+CHLOR_A is concurrent with landings at peak association (r=0.83, Bonferroni-adjusted p=0.0139). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=11 aligned observations. [A6]
+CHLOR_A lags SSB by 4 yr at peak association (r=0.87, Bonferroni-adjusted p=0.098). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=7 aligned observations. [A7]
 
 ## Literature
 

@@ -8,7 +8,7 @@ points, place a stock in the Kobe plot:
     F/F_MSY  ≤ 1  healthy      overfished
     F/F_MSY  > 1  overfishing  both
 
-If a required reference point is missing, the result is ``"unknown"`` — we never
+If a required reference point is missing, the result is ``"unknown"`` - we never
 guess a status from incomplete inputs (DESIGN_PROMPT §9).
 """
 

@@ -49,7 +49,7 @@ class TaxonomyResolver:
 
     Lookup order: in-memory cache -> disk cache -> seed table -> WoRMS REST
     (only if ``allow_network``). An unresolvable name still yields a valid
-    :class:`Taxon` with ``aphia_id=None`` — we never block the pipeline on a
+    :class:`Taxon` with ``aphia_id=None`` - we never block the pipeline on a
     taxonomy miss, but we do log it.
     """
 

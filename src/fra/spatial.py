@@ -78,7 +78,7 @@ def normalize_area(
         which is mapped to its FAO sub-area;
       * a bare FAO code embedded anywhere in ``raw`` (e.g. ``"FAO 37.2.1"``).
 
-    Raises ``ValueError`` if nothing recognizable is found — fail loud at ingest.
+    Raises ``ValueError`` if nothing recognizable is found - fail loud at ingest.
     """
     gsa_num = gsa
     if gsa_num is None:
@@ -94,7 +94,7 @@ def normalize_area(
         return SpatialUnit(
             fao_area=fao,
             gsa=gsa_num,
-            label=label or f"GSA {gsa_num} — {label_for_fao_area(fao)}",
+            label=label or f"GSA {gsa_num} - {label_for_fao_area(fao)}",
         )
 
     m = _FAO_CODE_RE.search(raw)

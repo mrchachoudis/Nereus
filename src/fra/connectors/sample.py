@@ -1,6 +1,6 @@
 """Offline, deterministic sample connectors.
 
-These fabricate *nothing at runtime* from the network — they return a fixed,
+These fabricate *nothing at runtime* from the network - they return a fixed,
 clearly-labeled synthetic dataset for European hake in FAO 37.2 so the example
 run, the end-to-end test, and a keyless quickstart all work offline. Every record
 is stamped with ``source="sample_*"`` and a ``source_ref`` that makes its

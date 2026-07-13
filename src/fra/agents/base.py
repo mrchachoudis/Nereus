@@ -1,6 +1,6 @@
 """Agent protocol and shared machinery (DESIGN_PROMPT §6.3).
 
-Agents talk only to the Blackboard and the orchestrator — never to each other
+Agents talk only to the Blackboard and the orchestrator - never to each other
 (star topology). The base class supplies structured logging, a per-agent timeout,
 retry-with-backoff for the transient failures agents can hit, and a ``_guard``
 that checks Blackboard preconditions before the agent body runs.
@@ -95,7 +95,7 @@ class BaseAgent(ABC):
                 return await self._run(bb)
             except (AgentError, LLMError) as exc:
                 # Deterministic failures (bad structured output, precondition
-                # errors) won't be fixed by retrying — fail fast.
+                # errors) won't be fixed by retrying - fail fast.
                 raise AgentError(str(exc)) from exc
             except Exception as exc:  # noqa: BLE001 - transient; retry with backoff
                 last_exc = exc

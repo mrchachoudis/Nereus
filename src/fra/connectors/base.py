@@ -1,7 +1,7 @@
 """Connector protocol plus shared HTTP plumbing: rate limit, cache, backoff.
 
 Every source is one connector. A connector takes a :class:`ResearchPlan` and
-returns typed records, or ``[]`` when the source has nothing — it never
+returns typed records, or ``[]`` when the source has nothing - it never
 fabricates a record (DESIGN_PROMPT §8). Cross-cutting concerns (token-bucket
 rate limiting, on-disk response caching keyed by request hash, retry with
 exponential backoff on transient errors) live in :class:`HttpConnector` so

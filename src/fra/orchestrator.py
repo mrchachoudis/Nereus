@@ -3,7 +3,7 @@
 Owns the Blackboard, dispatches agents through explicit phases, runs independent
 retrieval concurrently, enforces a global timeout, bounds the synthesis↔critic
 loop by ``max_revision_rounds``, and writes an observable ``run_log.jsonl`` (one
-line per transition plus token accounting). Agents never call each other — every
+line per transition plus token accounting). Agents never call each other - every
 edge in the graph passes through here.
 """
 

@@ -2,7 +2,7 @@
 
 Agents read inputs from the Blackboard and write outputs back to it. Every write
 of external data must go through :meth:`Blackboard.record`, which appends a
-:class:`ProvenanceEntry` — provenance is mandatory, not optional.
+:class:`ProvenanceEntry` - provenance is mandatory, not optional.
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ from fra.models import (
 
 
 class CoverageGap(FraModel):
-    """A recorded absence of data in a domain — gaps are data, never fabricated."""
+    """A recorded absence of data in a domain - gaps are data, never fabricated."""
 
     domain: str
     detail: str

@@ -62,7 +62,7 @@ class FaoLandingsConnector(HttpConnector):
         for i, row in enumerate(rows or []):
             tonnes = row.get("tonnes")
             if tonnes is None:
-                continue  # gaps are data — skip, never invent
+                continue  # gaps are data - skip, never invent
             taxon = self._resolver.resolve(row["species"])
             area = normalize_area(str(row.get("fao_area", "")), gsa=row.get("gsa"))
             ref = row.get("ref") or f"{self.name}:{row['species']}:{row['fao_area']}:{row['year']}"

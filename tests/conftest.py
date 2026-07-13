@@ -41,7 +41,7 @@ def hake() -> Taxon:
 
 @pytest.fixture
 def area_37_2() -> SpatialUnit:
-    return SpatialUnit(fao_area="37.2", gsa=None, label="Mediterranean — Adriatic/Ionian")
+    return SpatialUnit(fao_area="37.2", gsa=None, label="Mediterranean - Adriatic/Ionian")
 
 
 @pytest.fixture

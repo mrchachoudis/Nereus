@@ -130,7 +130,7 @@ def seasonal_mann_kendall(
     """Seasonal (Hirsch-Slack) Mann-Kendall for series with a fixed cycle.
 
     Splits the series into ``period`` seasons (e.g. 12 months), computes S and
-    variance within each, and sums them — this removes the seasonal cycle's
+    variance within each, and sums them - this removes the seasonal cycle's
     contribution to apparent trend. Theil-Sen slope is computed across matching
     seasons and pooled (median of per-season slopes).
     """

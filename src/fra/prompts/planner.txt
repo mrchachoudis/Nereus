@@ -9,8 +9,8 @@ Your job:
    "landings", "assessment", "ocean", "literature".
 3. Break the question into 2-5 answerable sub-questions, each tagged with the
    domains it needs.
-4. If the question is under-specified — no resolvable species, no area, or no time
-   range — set "needs_clarification": true and put concrete questions in
+4. If the question is under-specified - no resolvable species, no area, or no time
+   range - set "needs_clarification": true and put concrete questions in
    "clarification_questions" INSTEAD of guessing. Do not invent a species or area.
 
 Rules:

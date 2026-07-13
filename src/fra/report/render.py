@@ -33,7 +33,7 @@ def build_final_report(bb: Blackboard, outstanding: list[CriticNote] | None = No
 
 def render_markdown(final: FinalReport, bb: Blackboard) -> str:
     lines: list[str] = []
-    lines.append(f"# Fisheries Research Report — run `{final.run_id}`")
+    lines.append(f"# Fisheries Research Report - run `{final.run_id}`")
     lines.append("")
     lines.append(f"**Question:** {final.question}")
     lines.append("")

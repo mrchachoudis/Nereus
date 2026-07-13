@@ -1,6 +1,6 @@
 {
   "_provenance": {
-    "source": "Eurostat — Catches in the Mediterranean and Black Sea (fish_ca_atl37)",
+    "source": "Eurostat - Catches in the Mediterranean and Black Sea (fish_ca_atl37)",
     "doi": "10.2908/FISH_CA_ATL37",
     "url": "https://ec.europa.eu/eurostat/databrowser/view/fish_ca_atl37/default/table?lang=en",
     "extracted": "species=HKE (Merluccius merluccius), fishreg=37.2 Central subarea, geo=EU27_2020, unit=Tonnes live weight",

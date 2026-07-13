@@ -1,6 +1,6 @@
 """A lightweight, deterministic research-question parser.
 
-This is not a substitute for the LLM Planner — it is (a) a grounding aid whose
+This is not a substitute for the LLM Planner - it is (a) a grounding aid whose
 output is handed to the model as a starting point, and (b) the offline fallback
 used when no LLM is available, so the example run and tests work keyless. It
 extracts species, FAO area/GSA, and a year range from the question text using
@@ -27,7 +27,7 @@ _SPECIES_ALIASES: dict[str, str] = {
     "red mullet": "Mullus barbatus",
 }
 
-_YEAR_RANGE_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})\s*[-–—to]{1,3}\s*(1[89]\d{2}|20\d{2})\b")
+_YEAR_RANGE_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})\s*[-–to]{1,3}\s*(1[89]\d{2}|20\d{2})\b")
 _FAO_RE = re.compile(r"\bFAO(?:\s+(?:area|major\s+area))?\s+(\d{1,2}(?:\.\d{1,2}){0,2})", re.I)
 _GSA_RE = re.compile(r"\bGSA\s*0*(\d{1,2})\b", re.I)
 _SCI_NAME_RE = re.compile(r"\b([A-Z][a-z]+)\s+([a-z]{3,})\b")

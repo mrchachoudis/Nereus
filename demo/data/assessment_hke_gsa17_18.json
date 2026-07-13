@@ -1,9 +1,9 @@
 {
   "_provenance": {
-    "source": "GFCM Working Group on Stock Assessment of Demersal Species (WGSAD) — European hake, GSAs 17-18 (Adriatic Sea)",
+    "source": "GFCM Working Group on Stock Assessment of Demersal Species (WGSAD) - European hake, GSAs 17-18 (Adriatic Sea)",
     "url": "https://www.fao.org/gfcm/technical-meetings/detail/en/c/1194087/",
     "status_basis": "GFCM/STECF assessments classify Adriatic hake (GSAs 17-18) as 'in overexploitation and overexploited' (overfished AND subject to overfishing).",
-    "IMPORTANT": "REPRESENTATIVE reference points reflecting the REAL published stock STATUS (overfished + overfishing, F/Fmsy > 1, SSB/Bmsy < 1). The exact year-by-year SSB/F values are illustrative — for production/publication, replace this file with an official GFCM Stock Assessment Form (SAF) or STECF Med & Black Sea database export. Do NOT present these specific SSB numbers as exact official figures on camera.",
+    "IMPORTANT": "REPRESENTATIVE reference points reflecting the REAL published stock STATUS (overfished + overfishing, F/Fmsy > 1, SSB/Bmsy < 1). The exact year-by-year SSB/F values are illustrative - for production/publication, replace this file with an official GFCM Stock Assessment Form (SAF) or STECF Med & Black Sea database export. Do NOT present these specific SSB numbers as exact official figures on camera.",
     "reference_points": "F_MSY = 0.20 (F0.1 proxy, GFCM demersal advice); B_MSY illustrative."
   },
   "rows": [

@@ -2,7 +2,7 @@
 
 Runs its connectors concurrently (``asyncio.gather``), writes results to the
 Blackboard with provenance, and records a coverage gap for any domain that
-errors or returns nothing — a single connector failure degrades that domain, it
+errors or returns nothing - a single connector failure degrades that domain, it
 does not kill the run (DESIGN_PROMPT §11).
 """
 

@@ -103,7 +103,7 @@ def lagged_association(
     lin = stats.linregress(a, b)
 
     caveat = (
-        f"Associational only — not causal. Best lag selected post hoc over "
+        f"Associational only - not causal. Best lag selected post hoc over "
         f"{n_tested} lags; reported p adjusted by Bonferroni (×{n_tested}). "
         f"n={a.size} aligned observations."
     )

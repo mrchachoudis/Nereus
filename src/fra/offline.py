@@ -4,7 +4,7 @@ This is NOT a language model. It satisfies :class:`~fra.llm.LLMBackend` by readi
 the machine-readable context each agent embeds in its prompt and emitting valid
 structured JSON by rule. It lets the whole pipeline run keyless and reproducibly
 (for the committed example and for a quickstart with no API key), while every
-number it emits is still drawn only from the supplied artifacts — the grounding
+number it emits is still drawn only from the supplied artifacts - the grounding
 contract holds exactly as it would for a real model.
 
 For the Planner it returns the heuristic plan already computed in context. For
@@ -91,7 +91,7 @@ def _synthesize(context: dict[str, Any]) -> dict[str, Any]:
         else:
             results_claims.append(claim)
 
-    # Reference claims (qualitative — corroboration), cited to the reference id.
+    # Reference claims (qualitative - corroboration), cited to the reference id.
     lit_claims: list[dict[str, Any]] = []
     for i, r in enumerate(references[:5], start=1):
         marker = f"[L{i}]"

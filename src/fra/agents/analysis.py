@@ -2,7 +2,7 @@
 
 Waits for retrieval, then runs trend tests, stock-status classification, and
 covariate association over the Blackboard, emitting :class:`AnalysisResult`
-objects. It performs no arithmetic itself beyond marshalling series — every
+objects. It performs no arithmetic itself beyond marshalling series - every
 statistic comes from a pure, unit-tested function in :mod:`fra.analysis`. Each
 result records the ``inputs`` (record IDs) it depends on so claims can be
 grounded and audited.

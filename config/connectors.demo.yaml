@@ -1,4 +1,4 @@
-# LIVE DEMO configuration — REAL public data.
+# LIVE DEMO configuration - REAL public data.
 #
 # Landings + assessment are served from a local shim (demo/serve_local_sources.py)
 # populated with REAL pre-fetched data:
@@ -8,7 +8,7 @@
 #
 # Literature (Crossref, OpenAlex) and oceanography (ERDDAP) hit their REAL public
 # APIs live. If your machine is offline or a source is down, that domain is simply
-# reported as a coverage gap — the run still completes.
+# reported as a coverage gap - the run still completes.
 #
 # Run it with:  python demo/run_demo.py
 
