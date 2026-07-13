@@ -1,0 +1,68 @@
+# LIVE DEMO configuration — REAL public data.
+#
+# Landings + assessment are served from a local shim (demo/serve_local_sources.py)
+# populated with REAL pre-fetched data:
+#   - landings:   Eurostat FISH_CA_ATL37, European hake, FAO 37.2, EU27 (exact)
+#   - assessment: GFCM WGSAD 17-18 hake status (representative ref points; see
+#                 demo/data/assessment_hke_gsa17_18.json header)
+#
+# Literature (Crossref, OpenAlex) and oceanography (ERDDAP) hit their REAL public
+# APIs live. If your machine is offline or a source is down, that domain is simply
+# reported as a coverage gap — the run still completes.
+#
+# Run it with:  python demo/run_demo.py
+
+llm:
+  model: claude-sonnet-5
+  max_tokens: 4096
+  temperature: 0.2
+  timeout_s: 120
+
+runtime:
+  cache_dir: .fra_cache_demo
+  global_timeout_s: 1800
+  agent_timeout_s: 300
+  max_revision_rounds: 3
+
+connectors:
+  # ---- Landings: REAL Eurostat data via local shim -----------------------
+  fao_landings:
+    domain: landings
+    enabled: true
+    base_url: http://127.0.0.1:8899
+    rate_limit_per_s: 50
+    notes: "Eurostat FISH_CA_ATL37 hake / FAO 37.2 / EU27, served locally."
+
+  # ---- Assessment: GFCM 17-18 hake via local shim ------------------------
+  ram_legacy:
+    domain: assessment
+    enabled: true
+    base_url: http://127.0.0.1:8899
+    rate_limit_per_s: 50
+    notes: "GFCM WGSAD 17-18 hake. Representative ref points; swap in a STECF/GFCM export for production."
+
+  # ---- Oceanography: REAL ERDDAP, live -----------------------------------
+  erddap_ocean:
+    domain: ocean
+    enabled: true
+    base_url: https://coastwatch.pfeg.noaa.gov/erddap
+    rate_limit_per_s: 1
+    variables:
+      sst: { dataset_id: nceiPH53sstd1day, field: sea_surface_temperature }
+      chlor_a: { dataset_id: erdMH1chla1day, field: chlorophyll }
+    notes: "Public ERDDAP griddap. Live network call."
+
+  # ---- Literature: REAL Crossref + OpenAlex, live ------------------------
+  crossref:
+    domain: literature
+    enabled: true
+    base_url: https://api.crossref.org
+    rate_limit_per_s: 3
+    notes: "Crossref REST API. Keyless; live network call."
+
+  openalex:
+    domain: literature
+    enabled: true
+    base_url: https://api.openalex.org
+    rate_limit_per_s: 3
+    notes: "OpenAlex. Keyless; live network call."

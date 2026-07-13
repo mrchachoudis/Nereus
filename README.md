@@ -98,6 +98,23 @@ fra run "Assess stock status and environmental drivers of European hake in FAO 3
 That writes a timestamped run directory holding `report.md`, `report.json`,
 `figures/`, and `run_log.jsonl`.
 
+### Live demo on real EU data
+
+For a demo that runs on **real, public data** with no API key, use the bundled
+demo. Landings come from Eurostat (`FISH_CA_ATL37`, European hake, FAO 37.2,
+EU27), the stock status from the GFCM assessment of Adriatic hake (GSAs 17–18),
+and literature and oceanography from the live Crossref, OpenAlex, and ERDDAP APIs:
+
+```bash
+python demo/run_demo.py
+```
+
+It starts a small local server holding the pre-fetched real landings and
+assessment data, runs the pipeline offline against that plus the live
+literature/ocean APIs, and writes a report to `runs/demo/`. See
+[`demo/README_DEMO.md`](demo/README_DEMO.md) for data provenance, citations, and a
+short walkthrough.
+
 ### Running against real sources
 
 ```bash

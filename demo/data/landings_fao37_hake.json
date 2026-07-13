@@ -1,0 +1,22 @@
+{
+  "_provenance": {
+    "source": "Eurostat — Catches in the Mediterranean and Black Sea (fish_ca_atl37)",
+    "doi": "10.2908/FISH_CA_ATL37",
+    "url": "https://ec.europa.eu/eurostat/databrowser/view/fish_ca_atl37/default/table?lang=en",
+    "extracted": "species=HKE (Merluccius merluccius), fishreg=37.2 Central subarea, geo=EU27_2020, unit=Tonnes live weight",
+    "note": "REAL, unmodified Eurostat values (EU27 reporting). Retrieved via the Eurostat dissemination API."
+  },
+  "rows": [
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2010, "tonnes": 10351.16,  "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2010"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2011, "tonnes": 9086.79,   "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2011"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2012, "tonnes": 8831.259,  "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2012"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2013, "tonnes": 9178.9589, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2013"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2014, "tonnes": 7388.1748, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2014"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2015, "tonnes": 7528.2496, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2015"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2016, "tonnes": 6399.1131, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2016"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2017, "tonnes": 7428.2163, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2017"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2018, "tonnes": 7217.5842, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2018"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2019, "tonnes": 7283.7597, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2019"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "year": 2020, "tonnes": 6402.1299, "ref": "Eurostat:FISH_CA_ATL37:HKE:37.2:EU27:2020"}
+  ]
+}

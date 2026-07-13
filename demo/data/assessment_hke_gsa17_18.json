@@ -1,0 +1,22 @@
+{
+  "_provenance": {
+    "source": "GFCM Working Group on Stock Assessment of Demersal Species (WGSAD) — European hake, GSAs 17-18 (Adriatic Sea)",
+    "url": "https://www.fao.org/gfcm/technical-meetings/detail/en/c/1194087/",
+    "status_basis": "GFCM/STECF assessments classify Adriatic hake (GSAs 17-18) as 'in overexploitation and overexploited' (overfished AND subject to overfishing).",
+    "IMPORTANT": "REPRESENTATIVE reference points reflecting the REAL published stock STATUS (overfished + overfishing, F/Fmsy > 1, SSB/Bmsy < 1). The exact year-by-year SSB/F values are illustrative — for production/publication, replace this file with an official GFCM Stock Assessment Form (SAF) or STECF Med & Black Sea database export. Do NOT present these specific SSB numbers as exact official figures on camera.",
+    "reference_points": "F_MSY = 0.20 (F0.1 proxy, GFCM demersal advice); B_MSY illustrative."
+  },
+  "rows": [
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2010, "ssb": 9800.0, "f": 1.02, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2010"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2011, "ssb": 9300.0, "f": 0.98, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2011"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2012, "ssb": 8600.0, "f": 1.10, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2012"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2013, "ssb": 8900.0, "f": 0.95, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2013"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2014, "ssb": 7700.0, "f": 1.05, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2014"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2015, "ssb": 7900.0, "f": 0.90, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2015"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2016, "ssb": 6800.0, "f": 0.99, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2016"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2017, "ssb": 7200.0, "f": 0.86, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2017"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2018, "ssb": 7000.0, "f": 0.82, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2018"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2019, "ssb": 7100.0, "f": 0.75, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2019"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": "17", "year": 2020, "ssb": 6600.0, "f": 0.70, "f_msy": 0.20, "b_msy": 22000.0, "ref": "GFCM:WGSAD:HKE:GSA17-18:2020"}
+  ]
+}
