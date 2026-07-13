@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "id": "https://openalex.org/W123456789",
+      "doi": "https://doi.org/10.1093/icesjms/fsx100",
+      "title": "Stock assessment of European hake in the Mediterranean",
+      "publication_year": 2018,
+      "cited_by_count": 84,
+      "authorships": [
+        {"author": {"display_name": "Anna Rossi"}},
+        {"author": {"display_name": "Marco Bianchi"}}
+      ],
+      "abstract_inverted_index": {
+        "We": [0], "assess": [1], "European": [2], "hake": [3],
+        "and": [4], "find": [5], "overfishing.": [6]
+      }
+    },
+    {
+      "id": "https://openalex.org/W987654321",
+      "doi": null,
+      "title": "Mediterranean SST warming and fisheries",
+      "publication_year": 2021,
+      "cited_by_count": 10,
+      "authorships": [{"author": {"display_name": "Luca Verdi"}}],
+      "abstract_inverted_index": null
+    }
+  ]
+}

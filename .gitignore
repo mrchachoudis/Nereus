@@ -1,0 +1,30 @@
+# Secrets
+.env
+
+# Local assistant tooling config (not part of the project)
+.claude/
+
+# Caches
+.fra_cache/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Run outputs (keep the directory, ignore generated runs)
+runs/*
+!runs/.gitkeep
+
+# Virtualenvs
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db

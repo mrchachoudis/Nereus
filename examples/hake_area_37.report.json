@@ -1,0 +1,613 @@
+{
+  "final_report": {
+    "run_id": "20260710T115836-a3c812",
+    "question": "Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020",
+    "plan": {
+      "question": "Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020",
+      "taxa": [
+        {
+          "scientific_name": "Merluccius merluccius",
+          "aphia_id": null,
+          "common_name": null
+        }
+      ],
+      "areas": [
+        {
+          "fao_area": "37.2",
+          "gsa": null,
+          "label": "Mediterranean and Black Sea (subarea 37.2)"
+        }
+      ],
+      "time_range": {
+        "start_year": 2010,
+        "end_year": 2020
+      },
+      "required_domains": [
+        "assessment",
+        "ocean",
+        "literature"
+      ],
+      "sub_questions": [
+        {
+          "id": "sq1",
+          "text": "What is the landings/catch trend over the period?",
+          "domains": [
+            "landings"
+          ]
+        },
+        {
+          "id": "sq2",
+          "text": "What is the current stock status vs reference points?",
+          "domains": [
+            "assessment"
+          ]
+        },
+        {
+          "id": "sq3",
+          "text": "Are environmental covariates associated with the stock metrics?",
+          "domains": [
+            "ocean",
+            "assessment"
+          ]
+        }
+      ],
+      "needs_clarification": false,
+      "clarification_questions": [],
+      "rationale": "Parsed deterministically from the question text."
+    },
+    "sections": [
+      {
+        "title": "Summary",
+        "claims": [
+          {
+            "text": "This report addresses: Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020. It synthesizes 7 quantitative results and 2 references. All numeric claims are grounded in the cited source records.",
+            "citation_markers": [],
+            "is_quantitative": false
+          }
+        ]
+      },
+      {
+        "title": "Methods",
+        "claims": [
+          {
+            "text": "Trends were tested with the Mann-Kendall test and Theil-Sen slope; stock status was classified against MSY reference points (Kobe quadrants); covariate associations used lagged cross-correlation with a Bonferroni-adjusted p-value. All statistics are computed by deterministic, unit-tested functions; associations are not causal.",
+            "citation_markers": [],
+            "is_quantitative": false
+          }
+        ]
+      },
+      {
+        "title": "Results",
+        "claims": [
+          {
+            "text": "Landings show a decreasing trend (Mann-Kendall p=2.62e-05; Theil-Sen slope -495.9 tonnes/yr, 95% CI [-544.4, -455.7]).",
+            "citation_markers": [
+              "[A1]"
+            ],
+            "is_quantitative": true
+          },
+          {
+            "text": "Spawning stock biomass shows a decreasing trend (Mann-Kendall p=5.16e-05; Theil-Sen slope -959.8/yr).",
+            "citation_markers": [
+              "[A2]"
+            ],
+            "is_quantitative": true
+          },
+          {
+            "text": "As of 2020, Merluccius merluccius in 37.2 is classified 'both': biomass below B_MSY and F above F_MSY.",
+            "citation_markers": [
+              "[A3]"
+            ],
+            "is_quantitative": true
+          }
+        ]
+      },
+      {
+        "title": "Environmental drivers",
+        "claims": [
+          {
+            "text": "SST lags landings by 1 yr at peak association (r=-0.97, Bonferroni-adjusted p=3.73e-05). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=10 aligned observations.",
+            "citation_markers": [
+              "[A4]"
+            ],
+            "is_quantitative": true
+          },
+          {
+            "text": "SST lags SSB by 1 yr at peak association (r=-0.98, Bonferroni-adjusted p=1.34e-05). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=10 aligned observations.",
+            "citation_markers": [
+              "[A5]"
+            ],
+            "is_quantitative": true
+          },
+          {
+            "text": "CHLOR_A is concurrent with landings at peak association (r=0.83, Bonferroni-adjusted p=0.0139). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=11 aligned observations.",
+            "citation_markers": [
+              "[A6]"
+            ],
+            "is_quantitative": true
+          },
+          {
+            "text": "CHLOR_A lags SSB by 4 yr at peak association (r=0.87, Bonferroni-adjusted p=0.098). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=7 aligned observations.",
+            "citation_markers": [
+              "[A7]"
+            ],
+            "is_quantitative": true
+          }
+        ]
+      },
+      {
+        "title": "Literature",
+        "claims": [
+          {
+            "text": "The literature includes \"Stock status and warming-linked distribution shifts of European hake in the central Mediterranean\" (2019), relevant to these findings.",
+            "citation_markers": [
+              "[L1]"
+            ],
+            "is_quantitative": false
+          },
+          {
+            "text": "The literature includes \"Mediterranean sea surface temperature trends 2000\u20132020 and implications for demersal fisheries\" (2021), relevant to these findings.",
+            "citation_markers": [
+              "[L2]"
+            ],
+            "is_quantitative": false
+          }
+        ]
+      },
+      {
+        "title": "Limitations",
+        "claims": [
+          {
+            "text": "No major limitations identified.",
+            "citation_markers": [],
+            "is_quantitative": false
+          }
+        ]
+      }
+    ],
+    "figures": [
+      {
+        "id": "fig-landings",
+        "title": "Landings",
+        "path": "fig-landings.png",
+        "caption": "Landings over time with Theil-Sen trend and 95% CI. Source: landings connectors.",
+        "kind": "timeseries"
+      },
+      {
+        "id": "fig-ssb",
+        "title": "Spawning stock biomass",
+        "path": "fig-ssb.png",
+        "caption": "Spawning stock biomass over time with Theil-Sen trend and 95% CI. Source: assessment connectors.",
+        "kind": "timeseries"
+      },
+      {
+        "id": "fig-kobe",
+        "title": "Kobe plot",
+        "path": "fig-kobe.png",
+        "caption": "Stock-status trajectory in Kobe space (B/B_MSY vs F/F_MSY); lower-right is healthy. Source: assessment connectors.",
+        "kind": "kobe"
+      },
+      {
+        "id": "fig-covariate-overlay",
+        "title": "SSB vs SST",
+        "path": "fig-covariate-overlay.png",
+        "caption": "SSB overlaid with SST (degree_C). Association is not causal. Source: assessment + ocean connectors.",
+        "kind": "covariate_overlay"
+      }
+    ],
+    "citations": [
+      {
+        "marker": "[A1]",
+        "ref_id": "trend-landings-merluccius-merluccius-37.2",
+        "kind": "analysis",
+        "detail": "Landings of Merluccius merluccius in 37.2 (2010-2020)"
+      },
+      {
+        "marker": "[A2]",
+        "ref_id": "trend-ssb-merluccius-merluccius-37.2",
+        "kind": "analysis",
+        "detail": "SSB of Merluccius merluccius in 37.2 (2010-2020)"
+      },
+      {
+        "marker": "[A3]",
+        "ref_id": "status-merluccius-merluccius-37.2",
+        "kind": "analysis",
+        "detail": "Stock status of Merluccius merluccius in 37.2 (2020)"
+      },
+      {
+        "marker": "[A4]",
+        "ref_id": "assoc-sst-landings-37.2",
+        "kind": "analysis",
+        "detail": "SST vs landings in 37.2"
+      },
+      {
+        "marker": "[A5]",
+        "ref_id": "assoc-sst-SSB-37.2",
+        "kind": "analysis",
+        "detail": "SST vs SSB in 37.2"
+      },
+      {
+        "marker": "[A6]",
+        "ref_id": "assoc-chlor_a-landings-37.2",
+        "kind": "analysis",
+        "detail": "CHLOR_A vs landings in 37.2"
+      },
+      {
+        "marker": "[A7]",
+        "ref_id": "assoc-chlor_a-SSB-37.2",
+        "kind": "analysis",
+        "detail": "CHLOR_A vs SSB in 37.2"
+      },
+      {
+        "marker": "[L1]",
+        "ref_id": "sample_lit-1",
+        "kind": "reference",
+        "detail": "Stock status and warming-linked distribution shifts of European hake in the central Mediterranean"
+      },
+      {
+        "marker": "[L2]",
+        "ref_id": "sample_lit-2",
+        "kind": "reference",
+        "detail": "Mediterranean sea surface temperature trends 2000\u20132020 and implications for demersal fisheries"
+      }
+    ],
+    "limitations": [],
+    "outstanding_critic_notes": [],
+    "generated_at": "2026-07-10T11:58:37.093825Z"
+  },
+  "provenance": [
+    {
+      "source": "sample_landings",
+      "url_or_query": "sample_landings",
+      "retrieved_at": "2026-07-10T11:58:36.500468Z",
+      "record_ids": [
+        "sample_landings-2010",
+        "sample_landings-2011",
+        "sample_landings-2012",
+        "sample_landings-2013",
+        "sample_landings-2014",
+        "sample_landings-2015",
+        "sample_landings-2016",
+        "sample_landings-2017",
+        "sample_landings-2018",
+        "sample_landings-2019",
+        "sample_landings-2020"
+      ],
+      "note": null
+    },
+    {
+      "source": "sample_assessment",
+      "url_or_query": "sample_assessment",
+      "retrieved_at": "2026-07-10T11:58:36.500468Z",
+      "record_ids": [
+        "sample_assessment-2010",
+        "sample_assessment-2011",
+        "sample_assessment-2012",
+        "sample_assessment-2013",
+        "sample_assessment-2014",
+        "sample_assessment-2015",
+        "sample_assessment-2016",
+        "sample_assessment-2017",
+        "sample_assessment-2018",
+        "sample_assessment-2019",
+        "sample_assessment-2020"
+      ],
+      "note": null
+    },
+    {
+      "source": "sample_ocean",
+      "url_or_query": "sample_ocean",
+      "retrieved_at": "2026-07-10T11:58:36.500468Z",
+      "record_ids": [
+        "sample_ocean-sst-37.2",
+        "sample_ocean-chl-37.2"
+      ],
+      "note": null
+    },
+    {
+      "source": "sample_literature",
+      "url_or_query": "sample_literature",
+      "retrieved_at": "2026-07-10T11:58:36.500468Z",
+      "record_ids": [
+        "sample_lit-1",
+        "sample_lit-2"
+      ],
+      "note": null
+    }
+  ],
+  "coverage_gaps": [],
+  "analyses": [
+    {
+      "id": "trend-landings-merluccius-merluccius-37.2",
+      "kind": "trend",
+      "target": "Landings of Merluccius merluccius in 37.2 (2010-2020)",
+      "statistic": -1.0,
+      "p_value": 2.623614939456509e-05,
+      "confidence_interval": [
+        -544.3999999999996,
+        -455.6749999999997
+      ],
+      "effect_size": -495.9333333333331,
+      "interpretation": "Landings show a decreasing trend (Mann-Kendall p=2.62e-05; Theil-Sen slope -495.9 tonnes/yr, 95% CI [-544.4, -455.7]).",
+      "inputs": [
+        "sample_landings-2010",
+        "sample_landings-2011",
+        "sample_landings-2012",
+        "sample_landings-2013",
+        "sample_landings-2014",
+        "sample_landings-2015",
+        "sample_landings-2016",
+        "sample_landings-2017",
+        "sample_landings-2018",
+        "sample_landings-2019",
+        "sample_landings-2020"
+      ],
+      "detail": {
+        "trend": "decreasing",
+        "z": -4.203894298472224,
+        "n": 11.0,
+        "unit": "tonnes/yr"
+      }
+    },
+    {
+      "id": "trend-ssb-merluccius-merluccius-37.2",
+      "kind": "trend",
+      "target": "SSB of Merluccius merluccius in 37.2 (2010-2020)",
+      "statistic": -0.9636363636363636,
+      "p_value": 5.161424524824376e-05,
+      "confidence_interval": [
+        -1096.033333333334,
+        -826.299999999998
+      ],
+      "effect_size": -959.8142857142864,
+      "interpretation": "Spawning stock biomass shows a decreasing trend (Mann-Kendall p=5.16e-05; Theil-Sen slope -959.8/yr).",
+      "inputs": [
+        "sample_assessment-2010",
+        "sample_assessment-2011",
+        "sample_assessment-2012",
+        "sample_assessment-2013",
+        "sample_assessment-2014",
+        "sample_assessment-2015",
+        "sample_assessment-2016",
+        "sample_assessment-2017",
+        "sample_assessment-2018",
+        "sample_assessment-2019",
+        "sample_assessment-2020"
+      ],
+      "detail": {
+        "trend": "decreasing",
+        "z": -4.048194509639919,
+        "n": 11.0
+      }
+    },
+    {
+      "id": "status-merluccius-merluccius-37.2",
+      "kind": "status_classification",
+      "target": "Stock status of Merluccius merluccius in 37.2 (2020)",
+      "statistic": 2.28,
+      "p_value": null,
+      "confidence_interval": null,
+      "effect_size": 0.45653875,
+      "interpretation": "As of 2020, Merluccius merluccius in 37.2 is classified 'both': biomass below B_MSY and F above F_MSY.",
+      "inputs": [
+        "sample_assessment-2020"
+      ],
+      "detail": {
+        "status": "both",
+        "b_ratio": 0.45653875,
+        "f_ratio": 2.28,
+        "year": 2020.0
+      }
+    },
+    {
+      "id": "assoc-sst-landings-37.2",
+      "kind": "association",
+      "target": "SST vs landings in 37.2",
+      "statistic": -0.968499728372661,
+      "p_value": 3.732207962405724e-05,
+      "confidence_interval": null,
+      "effect_size": -3885.4484758661665,
+      "interpretation": "SST lags landings by 1 yr at peak association (r=-0.97, Bonferroni-adjusted p=3.73e-05). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=10 aligned observations.",
+      "inputs": [
+        "sample_ocean-sst-37.2",
+        "sample_landings-2010",
+        "sample_landings-2011",
+        "sample_landings-2012",
+        "sample_landings-2013",
+        "sample_landings-2014",
+        "sample_landings-2015",
+        "sample_landings-2016",
+        "sample_landings-2017",
+        "sample_landings-2018",
+        "sample_landings-2019",
+        "sample_landings-2020"
+      ],
+      "detail": {
+        "best_lag": -1.0,
+        "r": -0.968499728372661,
+        "lags": [
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "correlations": [
+          -0.8924360432519969,
+          -0.8210478207593936,
+          -0.8930305623483138,
+          -0.968499728372661,
+          -0.9322940514885342,
+          -0.8610252983593971,
+          -0.9220938913928499,
+          -0.940169973763824,
+          -0.7879601952874078
+        ],
+        "n_effective": 10.0
+      }
+    },
+    {
+      "id": "assoc-sst-SSB-37.2",
+      "kind": "association",
+      "target": "SST vs SSB in 37.2",
+      "statistic": -0.975676034621054,
+      "p_value": 1.3385195817836487e-05,
+      "confidence_interval": null,
+      "effect_size": -7628.176686256112,
+      "interpretation": "SST lags SSB by 1 yr at peak association (r=-0.98, Bonferroni-adjusted p=1.34e-05). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=10 aligned observations.",
+      "inputs": [
+        "sample_ocean-sst-37.2",
+        "sample_assessment-2010",
+        "sample_assessment-2011",
+        "sample_assessment-2012",
+        "sample_assessment-2013",
+        "sample_assessment-2014",
+        "sample_assessment-2015",
+        "sample_assessment-2016",
+        "sample_assessment-2017",
+        "sample_assessment-2018",
+        "sample_assessment-2019",
+        "sample_assessment-2020"
+      ],
+      "detail": {
+        "best_lag": -1.0,
+        "r": -0.975676034621054,
+        "lags": [
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "correlations": [
+          -0.8247871838305472,
+          -0.7591863784411892,
+          -0.9277339328529144,
+          -0.975676034621054,
+          -0.8886649447429127,
+          -0.8458316723516319,
+          -0.9635668386118724,
+          -0.9189344584185235,
+          -0.6945153327557043
+        ],
+        "n_effective": 10.0
+      }
+    },
+    {
+      "id": "assoc-chlor_a-landings-37.2",
+      "kind": "association",
+      "target": "CHLOR_A vs landings in 37.2",
+      "statistic": 0.830628922832007,
+      "p_value": 0.013888317536369755,
+      "confidence_interval": null,
+      "effect_size": 40129.29615348041,
+      "interpretation": "CHLOR_A is concurrent with landings at peak association (r=0.83, Bonferroni-adjusted p=0.0139). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=11 aligned observations.",
+      "inputs": [
+        "sample_ocean-chl-37.2",
+        "sample_landings-2010",
+        "sample_landings-2011",
+        "sample_landings-2012",
+        "sample_landings-2013",
+        "sample_landings-2014",
+        "sample_landings-2015",
+        "sample_landings-2016",
+        "sample_landings-2017",
+        "sample_landings-2018",
+        "sample_landings-2019",
+        "sample_landings-2020"
+      ],
+      "detail": {
+        "best_lag": 0.0,
+        "r": 0.830628922832007,
+        "lags": [
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "correlations": [
+          0.7979254120291741,
+          0.7140232408521948,
+          0.4982266488639611,
+          0.6749588955754842,
+          0.830628922832007,
+          0.7059158403343505,
+          0.4935125829294239,
+          0.7175364781854774,
+          0.8091013624928565
+        ],
+        "n_effective": 11.0
+      }
+    },
+    {
+      "id": "assoc-chlor_a-SSB-37.2",
+      "kind": "association",
+      "target": "CHLOR_A vs SSB in 37.2",
+      "statistic": 0.8700603586178495,
+      "p_value": 0.09797816575734464,
+      "confidence_interval": null,
+      "effect_size": 61386.34941145125,
+      "interpretation": "CHLOR_A lags SSB by 4 yr at peak association (r=0.87, Bonferroni-adjusted p=0.098). Associational only \u2014 not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (\u00d79). n=7 aligned observations.",
+      "inputs": [
+        "sample_ocean-chl-37.2",
+        "sample_assessment-2010",
+        "sample_assessment-2011",
+        "sample_assessment-2012",
+        "sample_assessment-2013",
+        "sample_assessment-2014",
+        "sample_assessment-2015",
+        "sample_assessment-2016",
+        "sample_assessment-2017",
+        "sample_assessment-2018",
+        "sample_assessment-2019",
+        "sample_assessment-2020"
+      ],
+      "detail": {
+        "best_lag": -4.0,
+        "r": 0.8700603586178495,
+        "lags": [
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "correlations": [
+          0.8700603586178495,
+          0.6255649116874069,
+          0.40767136595452713,
+          0.7386326374184229,
+          0.8574520021904376,
+          0.6245968124678458,
+          0.45171085327208677,
+          0.7974964162662689,
+          0.7961717160107373
+        ],
+        "n_effective": 7.0
+      }
+    }
+  ],
+  "record_counts": {
+    "landings": 11,
+    "assessments": 11,
+    "covariates": 2,
+    "references": 2
+  }
+}

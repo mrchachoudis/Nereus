@@ -1,0 +1,7 @@
+{
+  "rows": [
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": null, "year": 2010, "tonnes": 12500.0, "gear": "bottom trawl", "ref": "FAO:37.2:hake:2010"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": null, "year": 2011, "tonnes": 12010.0, "gear": "bottom trawl", "ref": "FAO:37.2:hake:2011"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": null, "year": 2012, "tonnes": null, "gear": "bottom trawl", "ref": "FAO:37.2:hake:2012"}
+  ]
+}

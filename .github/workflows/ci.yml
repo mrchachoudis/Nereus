@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-type-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install project (with dev extras)
+        run: uv pip install --system -e ".[dev]"
+
+      - name: Ruff (lint)
+        run: ruff check src tests
+
+      - name: Ruff (format check)
+        run: ruff format --check src tests
+
+      - name: Mypy (strict)
+        run: mypy
+
+      - name: Pytest
+        run: pytest -q
+
+  offline-smoke:
+    # Prove the keyless offline pipeline produces a report end to end.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - run: uv python install 3.11
+      - run: uv pip install --system -e ".[dev]"
+      - name: Run the example question offline
+        run: |
+          fra run "Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020" \
+            --config config/connectors.sample.yaml --offline --out ./runs
+      - name: Assert artifacts exist
+        run: |
+          test -n "$(find runs -name report.md)"
+          test -n "$(find runs -name report.json)"
+          test -n "$(find runs -name run_log.jsonl)"

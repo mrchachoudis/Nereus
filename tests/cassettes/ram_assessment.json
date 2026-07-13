@@ -1,0 +1,7 @@
+{
+  "rows": [
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": null, "year": 2010, "ssb": 46000.0, "f": 0.62, "f_msy": 0.25, "b_msy": 80000.0, "status": null, "ref": "RAM:hake:37.2:2010"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": null, "year": 2011, "ssb": 45100.0, "f": 0.60, "f_msy": 0.25, "b_msy": 80000.0, "status": "overfishing", "ref": "RAM:hake:37.2:2011"},
+    {"species": "Merluccius merluccius", "fao_area": "37.2", "gsa": null, "year": 2012, "ssb": 44200.0, "f": 0.58, "f_msy": null, "b_msy": null, "status": null, "ref": "RAM:hake:37.2:2012"}
+  ]
+}

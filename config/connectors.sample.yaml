@@ -1,0 +1,36 @@
+# Offline demo configuration: enables ONLY the deterministic sample connectors.
+#
+# Use this for a keyless, network-free quickstart or to regenerate the committed
+# example report:
+#
+#   fra run "Assess stock status and environmental drivers of European hake in \
+#            FAO 37.2, 2010-2020" --config config/connectors.sample.yaml --offline
+#
+# The sample connectors return clearly-labelled synthetic data (source="sample_*")
+# for European hake in FAO 37.2. Never use them in production.
+
+llm:
+  model: claude-sonnet-5
+  max_tokens: 4096
+  temperature: 0.2
+  timeout_s: 120
+
+runtime:
+  cache_dir: .fra_cache
+  global_timeout_s: 600
+  agent_timeout_s: 120
+  max_revision_rounds: 3
+
+connectors:
+  sample_landings:
+    domain: landings
+    enabled: true
+  sample_assessment:
+    domain: assessment
+    enabled: true
+  sample_ocean:
+    domain: ocean
+    enabled: true
+  sample_literature:
+    domain: literature
+    enabled: true

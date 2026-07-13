@@ -1,0 +1,25 @@
+{
+  "message": {
+    "items": [
+      {
+        "DOI": "10.1093/icesjms/fsx100",
+        "title": ["Stock assessment of European hake in the Mediterranean"],
+        "author": [
+          {"given": "Anna", "family": "Rossi"},
+          {"given": "Marco", "family": "Bianchi"}
+        ],
+        "issued": {"date-parts": [[2018, 5, 1]]},
+        "abstract": "<jats:p>We assess <jats:italic>Merluccius merluccius</jats:italic> and find overfishing.</jats:p>",
+        "score": 24.5
+      },
+      {
+        "DOI": "10.1016/j.fishres.2020.105678",
+        "title": ["Sea surface temperature and demersal recruitment"],
+        "author": [{"given": "Luca", "family": "Verdi"}],
+        "issued": {"date-parts": [[2020]]},
+        "abstract": null,
+        "score": 12.25
+      }
+    ]
+  }
+}

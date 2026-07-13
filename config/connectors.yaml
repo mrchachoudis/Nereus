@@ -1,0 +1,70 @@
+# Connector + LLM configuration.
+#
+# One block per source. `enabled: false` (or a missing required key at runtime)
+# takes the source offline and the orchestrator records a coverage gap for that
+# domain instead of failing the run.
+#
+# IMPORTANT: endpoint bases below are documented defaults. Verify each source's
+# current API base and terms of use before relying on it (see README §Data source
+# terms of use). Sources change; update this file, not the code.
+
+llm:
+  # Default model string. Overridable via FRA_LLM_MODEL env var.
+  model: claude-sonnet-5
+  max_tokens: 4096
+  temperature: 0.2
+  timeout_s: 120
+
+runtime:
+  cache_dir: .fra_cache
+  # Global wall-clock budget for a run (seconds).
+  global_timeout_s: 1800
+  # Default per-agent timeout (seconds); individual agents may override.
+  agent_timeout_s: 300
+  max_revision_rounds: 3
+
+connectors:
+  # ---- Landings / catch --------------------------------------------------
+  fao_landings:
+    domain: landings
+    enabled: true
+    base_url: https://www.fao.org/fishery/statistics-query/en/global_production
+    rate_limit_per_s: 2
+    # This default ships as a bundled sample/fixture-backed connector; point it
+    # at a live FAO FishStatJ export or regional portal for production use.
+    notes: "FAO global production. Verify query API + license before live use."
+
+  # ---- Stock assessments -------------------------------------------------
+  ram_legacy:
+    domain: assessment
+    enabled: true
+    base_url: https://www.ramlegacy.org
+    rate_limit_per_s: 2
+    notes: "RAM Legacy Stock Assessment Database. CC-BY; cite the release DOI."
+
+  # ---- Oceanography ------------------------------------------------------
+  erddap_ocean:
+    domain: ocean
+    enabled: true
+    # A public ERDDAP griddap server. NOAA CoastWatch is a common choice.
+    base_url: https://coastwatch.pfeg.noaa.gov/erddap
+    rate_limit_per_s: 1
+    variables:
+      sst: { dataset_id: nceiPH53sstd1day, field: sea_surface_temperature }
+      chlor_a: { dataset_id: erdMH1chla1day, field: chlorophyll }
+    notes: "ERDDAP griddap. Confirm dataset_ids exist on your chosen server."
+
+  # ---- Literature --------------------------------------------------------
+  crossref:
+    domain: literature
+    enabled: true
+    base_url: https://api.crossref.org
+    rate_limit_per_s: 3
+    notes: "Crossref REST API. Keyless; send a mailto for the polite pool."
+
+  openalex:
+    domain: literature
+    enabled: true
+    base_url: https://api.openalex.org
+    rate_limit_per_s: 3
+    notes: "OpenAlex. Keyless; send a mailto for the polite pool."
