@@ -1,9 +1,6 @@
 # Secrets
 .env
 
-# Local assistant tooling config (not part of the project)
-.claude/
-
 # Caches
 .fra_cache/
 .mypy_cache/
@@ -22,7 +19,7 @@ runs/*
 !runs/.gitkeep
 
 # Virtualenvs
-.venv/
+.venv*/
 venv/
 
 # OS
