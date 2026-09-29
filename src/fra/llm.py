@@ -92,8 +92,8 @@ class AnthropicBackend:
             model=model,
             system=system,
             max_tokens=max_tokens,
-            temperature=temperature,
             messages=payload,  # type: ignore[arg-type]
+            extra_body={"temperature": temperature},
         )
         text = "".join(block.text for block in resp.content if block.type == "text")
         return LLMResult(

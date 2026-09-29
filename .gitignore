@@ -3,6 +3,7 @@
 
 # Caches
 .fra_cache/
+.fra_cache_demo/
 .mypy_cache/
 .ruff_cache/
 .pytest_cache/
