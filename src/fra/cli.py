@@ -1,5 +1,6 @@
 """``fra`` command-line entry point (DESIGN_PROMPT §12).
 
+    fra ui                      # open the web interface in your browser
     fra run "Assess stock status and environmental drivers of European hake in
              FAO 37.2, 2010-2023" --config config/connectors.yaml --out ./runs/
 
@@ -13,45 +14,12 @@ from __future__ import annotations
 import argparse
 import asyncio
 import logging
-import os
 import sys
 from pathlib import Path
 
-from fra.config import Settings, load_settings
-from fra.connectors import build_connectors
-from fra.llm import LLMBackend, LLMClient
-from fra.orchestrator import Orchestrator, Phase
-from fra.taxonomy import TaxonomyResolver
-
-
-def _build_llm(settings: Settings, *, offline: bool) -> tuple[LLMClient, bool]:
-    """Return (client, is_offline)."""
-    has_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
-    if offline or not has_key:
-        from fra.offline import DeterministicBackend
-
-        backend: LLMBackend = DeterministicBackend()
-        return (
-            LLMClient(
-                backend,
-                model=f"offline/{settings.model}",
-                max_tokens=settings.llm.max_tokens,
-                temperature=settings.llm.temperature,
-            ),
-            True,
-        )
-    from fra.llm import AnthropicBackend
-
-    anthropic_backend = AnthropicBackend(timeout=settings.llm.timeout_s)
-    return (
-        LLMClient(
-            anthropic_backend,
-            model=settings.model,
-            max_tokens=settings.llm.max_tokens,
-            temperature=settings.llm.temperature,
-        ),
-        False,
-    )
+from fra.config import load_settings
+from fra.orchestrator import Phase
+from fra.pipeline import build_pipeline
 
 
 async def _run(args: argparse.Namespace) -> int:
@@ -59,19 +27,14 @@ async def _run(args: argparse.Namespace) -> int:
     if args.max_revisions is not None:
         settings.runtime.max_revision_rounds = args.max_revisions
 
-    llm, is_offline = _build_llm(settings, offline=args.offline)
-    if is_offline:
+    pipeline = build_pipeline(settings, offline=args.offline, out_root=args.out, progress=True)
+    if pipeline.offline:
         print("• LLM: deterministic OFFLINE backend (no ANTHROPIC_API_KEY or --offline set).")
     else:
-        print(f"• LLM: Anthropic backend, model={settings.model}")
-
-    resolver = TaxonomyResolver(settings.runtime.cache_dir, allow_network=not is_offline)
-    connectors = build_connectors(settings, resolver=resolver)
-    print(f"• Connectors enabled: {', '.join(c.name for c in connectors) or '(none)'}")
-
-    orch = Orchestrator(settings, llm, connectors, out_root=args.out, progress=True)
+        print(f"• LLM: Anthropic backend, model={pipeline.model}")
+    print(f"• Connectors enabled: {', '.join(pipeline.connectors) or '(none)'}")
     print(f"• Running: {args.question!r}\n")
-    result = await orch.run(args.question)
+    result = await pipeline.orchestrator.run(args.question)
 
     print()
     if result.phase == Phase.CLARIFICATION_NEEDED:
@@ -114,6 +77,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--offline", action="store_true", help="Force the deterministic offline LLM backend."
     )
     run.add_argument("-v", "--verbose", action="store_true", help="Verbose logging.")
+
+    ui = sub.add_parser("ui", help="Open the web interface in your browser.")
+    ui.add_argument("--port", type=int, default=8765, help="Port to serve on (default 8765).")
+    ui.add_argument(
+        "--host",
+        default="127.0.0.1",
+        help="Address to bind. The default keeps Nereus private to this computer.",
+    )
+    ui.add_argument("--out", default="runs", type=Path, help="Where reports are saved.")
+    ui.add_argument("--no-browser", action="store_true", help="Don't open a browser tab.")
+    ui.add_argument("-v", "--verbose", action="store_true", help="Verbose logging.")
     return parser
 
 
@@ -136,6 +110,12 @@ def main(argv: list[str] | None = None) -> int:
     )
     if args.command == "run":
         return asyncio.run(_run(args))
+    if args.command == "ui":
+        from fra.web import serve
+
+        return serve(
+            host=args.host, port=args.port, out_root=args.out, open_browser=not args.no_browser
+        )
     parser.print_help()
     return 1
 

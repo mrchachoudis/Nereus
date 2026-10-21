@@ -88,7 +88,30 @@ uv pip install -e ".[dev]"
 # 2. (Optional) configure keys. The pipeline runs WITHOUT any key in offline mode
 cp .env.example .env      # then edit; set ANTHROPIC_API_KEY for the real LLM
 
-# 3. Run the committed example, fully offline, no keys, no network:
+# 3. Open the web interface (from the project folder)
+fra ui
+```
+
+`fra ui` opens Nereus in your browser at <http://127.0.0.1:8765>. Type a question
+or pick an example, choose where the data comes from, and select **Generate
+report**. You can watch each step as it runs, then read the finished report with
+its figures, stock-status summary, and clickable citations. Past reports are listed
+alongside, and each one can be downloaded as Markdown, as the JSON audit trail, or
+as the run log.
+
+It works offline with the bundled sample data. **Real EU data** runs the live demo
+described below, and **Live sources** uses `config/connectors.yaml`. With
+`ANTHROPIC_API_KEY` set before you start it, you can have Claude plan, write, and
+review the report. The server only listens on this computer, and keys are read from
+the environment, never typed into the page. Use `fra ui --port 8766` if 8765 is
+taken, or `--no-browser` to skip opening a tab.
+
+### Command line
+
+The same pipeline runs without the browser. To regenerate the committed example
+fully offline, with no keys and no network:
+
+```bash
 fra run "Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020" \
     --config config/connectors.sample.yaml \
     --offline \
@@ -212,8 +235,10 @@ src/fra/
 ├── models/              all pydantic contracts (§5)
 ├── report/              render.py (md + json), figures.py (matplotlib)
 ├── prompts/             versioned prompt templates
-└── cli.py               `fra run "..."`
-tests/                   models, analysis, connectors (offline), agents, orchestrator (e2e)
+├── pipeline.py          builds the LLM, connectors, and orchestrator from config
+├── web/                 `fra ui`: local web server and page (static/)
+└── cli.py               `fra run "..."` and `fra ui`
+tests/                   models, analysis, connectors (offline), agents, orchestrator (e2e), web
 examples/hake_area_37.md committed sample report
 ```
 

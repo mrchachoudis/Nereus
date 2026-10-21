@@ -92,6 +92,7 @@ class Orchestrator:
         out_dir = self._out_root / rid
         out_dir.mkdir(parents=True, exist_ok=True)
         self._log_fp = (out_dir / "run_log.jsonl").open("w", encoding="utf-8")
+        self._emit("start", run_id=rid, question=question)
         bb = Blackboard(run_id=rid, question=question)
         start = time.monotonic()
         try:
