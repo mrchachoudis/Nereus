@@ -88,11 +88,11 @@ class AnthropicBackend:
         temperature: float,
     ) -> LLMResult:
         payload = [{"role": m.role, "content": m.content} for m in messages]
+        # anthropic>=2.0 no longer accepts sampling params, so temperature is not sent.
         resp = self._client.messages.create(
             model=model,
             system=system,
             max_tokens=max_tokens,
-            temperature=temperature,
             messages=payload,  # type: ignore[arg-type]
         )
         text = "".join(block.text for block in resp.content if block.type == "text")
