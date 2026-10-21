@@ -43,6 +43,24 @@ async def test_planner_offline_parses_question() -> None:
     assert bb.plan.time_range.start_year == 2010
 
 
+@pytest.mark.parametrize(
+    "phrase",
+    ["2010-2020", "2010–2020", "from 2010 to 2020", "between 2010 and 2020", "2020 to 2010"],
+)
+def test_year_range_phrasings(phrase: str) -> None:
+    from fra.agents.planning_heuristic import _find_time_range
+
+    found = _find_time_range(f"European hake in FAO 37.2, {phrase}")
+    assert found is not None
+    assert (found.start_year, found.end_year) == (2010, 2020)
+
+
+def test_single_year_is_not_a_range() -> None:
+    from fra.agents.planning_heuristic import _find_time_range
+
+    assert _find_time_range("Is hake in FAO 37.2 overfished as of 2020?") is None
+
+
 async def test_planner_requests_clarification_when_vague() -> None:
     llm = make_offline_llm()
     bb = Blackboard(run_id="r", question="Tell me about fish")

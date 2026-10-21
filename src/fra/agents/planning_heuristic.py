@@ -27,7 +27,11 @@ _SPECIES_ALIASES: dict[str, str] = {
     "red mullet": "Mullus barbatus",
 }
 
-_YEAR_RANGE_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})\s*[-–to]{1,3}\s*(1[89]\d{2}|20\d{2})\b")
+# "2010-2020", "2010–2020", "2010 to 2020", "between 2010 and 2020", "2010 through 2020"
+_YEAR = r"(1[89]\d{2}|20\d{2})"
+_YEAR_RANGE_RE = re.compile(
+    rf"\b{_YEAR}\s*(?:-|–|—|\bto\b|\band\b|\bthrough\b|\buntil\b)\s*{_YEAR}\b", re.I
+)
 _FAO_RE = re.compile(r"\bFAO(?:\s+(?:area|major\s+area))?\s+(\d{1,2}(?:\.\d{1,2}){0,2})", re.I)
 _GSA_RE = re.compile(r"\bGSA\s*0*(\d{1,2})\b", re.I)
 _SCI_NAME_RE = re.compile(r"\b([A-Z][a-z]+)\s+([a-z]{3,})\b")
@@ -78,7 +82,8 @@ def _find_time_range(text: str) -> TimeRange | None:
     m = _YEAR_RANGE_RE.search(text)
     if not m:
         return None
-    return TimeRange(start_year=int(m.group(1)), end_year=int(m.group(2)))
+    a, b = int(m.group(1)), int(m.group(2))
+    return TimeRange(start_year=min(a, b), end_year=max(a, b))
 
 
 def _infer_domains(text: str) -> list[DataDomain]:
