@@ -79,6 +79,7 @@ def _synthesize(context: dict[str, Any]) -> dict[str, Any]:
     citations: list[dict[str, Any]] = []
     results_claims: list[dict[str, Any]] = []
     driver_claims: list[dict[str, Any]] = []
+    caveat_claims: list[dict[str, Any]] = []
 
     for marker_n, a in enumerate(analyses, start=1):
         marker = f"[A{marker_n}]"
@@ -90,6 +91,11 @@ def _synthesize(context: dict[str, Any]) -> dict[str, Any]:
             driver_claims.append(claim)
         else:
             results_claims.append(claim)
+        # Each caveat is tied to the analysis it qualifies, so it stays grounded.
+        for caveat in a.get("caveats") or []:
+            caveat_claims.append(
+                {"text": caveat, "citation_markers": [marker], "is_quantitative": True}
+            )
 
     # Reference claims (qualitative - corroboration), cited to the reference id.
     lit_claims: list[dict[str, Any]] = []
@@ -115,13 +121,16 @@ def _synthesize(context: dict[str, Any]) -> dict[str, Any]:
     methods_text = (
         "Trends were tested with the Mann-Kendall test and Theil-Sen slope; stock "
         "status was classified against MSY reference points (Kobe quadrants); "
-        "covariate associations used lagged cross-correlation with a "
-        "Bonferroni-adjusted p-value. All statistics are computed by deterministic, "
+        "covariate associations used lagged cross-correlation of linearly detrended "
+        "series, with p-values based on an autocorrelation-adjusted effective sample "
+        "size (Pyper & Peterman 1998) and Bonferroni-adjusted over the lags tested. "
+        "All statistics are computed by deterministic, "
         "unit-tested functions; associations are not causal."
     )
     limitations = [g.get("detail", "coverage gap") for g in gaps]
     if not driver_claims:
         limitations.append("No environmental-covariate association could be computed.")
+    limitations.extend(c["text"] for c in caveat_claims)
 
     sections = [
         {
@@ -170,7 +179,9 @@ def _synthesize(context: dict[str, Any]) -> dict[str, Any]:
             "claims": [
                 {"text": lim, "citation_markers": [], "is_quantitative": False}
                 for lim in limitations
+                if lim not in {c["text"] for c in caveat_claims}
             ]
+            + caveat_claims
             or [
                 {
                     "text": "No major limitations identified.",

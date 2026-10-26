@@ -67,6 +67,7 @@ class SynthesisAgent(BaseAgent):
                     "effect_size": a.effect_size,
                     "interpretation": a.interpretation,
                     "inputs": a.inputs,
+                    "caveats": a.caveats,
                     "detail": a.detail,
                 }
                 for a in bb.analyses

@@ -13,6 +13,12 @@ THE GROUNDING CONTRACT - non-negotiable:
   disagreement explicitly rather than smoothing it over.
 - Use hedged, uncertainty-aware language for associational findings; never use
   causal language for a correlation.
+- Every analysis lists its weaknesses in "caveats" (short series, correlations
+  driven by shared trends, small effective sample size, terminal-year status).
+  Report each caveat under Limitations, citing that analysis's marker. Never write
+  "no major limitations" when any analysis has caveats.
+- Association r values are computed on detrended series; "raw_r" in detail is the
+  untransformed correlation. Report the detrended r as the result, never raw_r.
 
 Structure the report with these sections, in order:
   "Summary", "Methods", "Results", "Environmental drivers", "Limitations",

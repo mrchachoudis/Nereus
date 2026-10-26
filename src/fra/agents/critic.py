@@ -32,7 +32,8 @@ class CriticAgent(BaseAgent):
 
     async def _run(self, bb: Blackboard) -> Blackboard:
         assert bb.draft is not None
-        mechanical = mechanical_check(bb.draft, bb.known_ids())
+        caveated = {a.id for a in bb.analyses if a.caveats}
+        mechanical = mechanical_check(bb.draft, bb.known_ids(), caveated_ids=caveated)
         llm_notes = self._llm_notes(bb, mechanical)
 
         notes = mechanical + llm_notes
@@ -82,8 +83,17 @@ class CriticAgent(BaseAgent):
             return []
 
 
-def mechanical_check(draft: DraftReport, known_ids: set[str]) -> list[CriticNote]:
-    """Deterministic grounding verification. Pure function, unit-testable."""
+def mechanical_check(
+    draft: DraftReport,
+    known_ids: set[str],
+    *,
+    caveated_ids: set[str] | None = None,
+) -> list[CriticNote]:
+    """Deterministic grounding verification. Pure function, unit-testable.
+
+    ``caveated_ids`` are analysis IDs that carry caveats; each must be cited from
+    the Limitations section, so a weak result can't be reported without its caveat.
+    """
     notes: list[CriticNote] = []
     marker_to_ref = {c.marker: c.ref_id for c in draft.citations}
 
@@ -125,4 +135,28 @@ def mechanical_check(draft: DraftReport, known_ids: set[str]) -> list[CriticNote
                             message=f"Marker {marker} is used but not declared in citations.",
                         )
                     )
+
+    # 3. Caveated analyses that the Limitations section never mentions.
+    if caveated_ids:
+        cited_in_limitations = {
+            marker_to_ref[m]
+            for section in draft.sections
+            if section.title.strip().lower() == "limitations"
+            for claim in section.claims
+            for m in claim.citation_markers
+            if m in marker_to_ref
+        }
+        cited_anywhere = set(marker_to_ref.values())
+        for analysis_id in sorted((caveated_ids & cited_anywhere) - cited_in_limitations):
+            notes.append(
+                CriticNote(
+                    severity="major",
+                    category="missing_uncertainty",
+                    section_title="Limitations",
+                    message=(
+                        f"Analysis '{analysis_id}' has caveats (see its 'caveats' field) "
+                        "that are not reported under Limitations with its citation marker."
+                    ),
+                )
+            )
     return notes

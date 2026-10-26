@@ -8,7 +8,9 @@ Check for:
 3. overconfident_language - causal wording for an associational result, or
    certainty the uncertainty does not warrant.
 4. missing_uncertainty - a point estimate stated with no p-value, CI, or caveat
-   where the analysis provides one.
+   where the analysis provides one; an analysis caveat (short series,
+   trend-driven correlation, small effective sample size) missing from
+   Limitations; or a raw (non-detrended) correlation presented as a finding.
 5. dangling_citation - a citation marker referencing an unknown ID.
 
 A mechanical pre-check has already flagged some dangling citations and uncited

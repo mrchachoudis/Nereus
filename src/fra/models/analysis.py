@@ -30,6 +30,9 @@ class AnalysisResult(FraModel):
     effect_size: float | None = None
     interpretation: str
     inputs: list[str] = Field(default_factory=list)
+    # Plain-language weaknesses of this result (short series, trend-driven
+    # correlation, ...). Synthesis must report these under Limitations.
+    caveats: list[str] = Field(default_factory=list)
     # Free-form structured detail (e.g. full lag profile, slope units, method).
     detail: dict[str, object] = Field(default_factory=dict)
 

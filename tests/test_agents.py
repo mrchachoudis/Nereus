@@ -145,6 +145,32 @@ async def test_analysis_produces_grounded_results(blackboard) -> None:
         assert all(i in known for i in a.inputs)
 
 
+async def test_analysis_flags_short_series_caveats(blackboard) -> None:
+    bb = await AnalysisAgent().run(blackboard)
+    assoc = [a for a in bb.analyses if a.kind == "association"]
+    assert assoc
+    for a in assoc:
+        assert "raw_r" in a.detail and "n_effective" in a.detail
+        # the fixture has 11 years: well under the short-series threshold
+        assert any("low power" in c for c in a.caveats)
+    status = next(a for a in bb.analyses if a.kind == "status_classification")
+    assert any("terminal assessment year" in c for c in status.caveats)
+
+
+async def test_offline_report_lists_caveats_under_limitations(blackboard) -> None:
+    llm = make_offline_llm()
+    bb = await AnalysisAgent().run(blackboard)
+    bb = await SynthesisAgent(llm).run(bb)
+    assert bb.draft is not None
+    lim = next(s for s in bb.draft.sections if s.title == "Limitations")
+    texts = [c.text for c in lim.claims]
+    assert "No major limitations identified." not in texts
+    caveated = {a.id for a in bb.analyses if a.caveats}
+    markers = {c.marker: c.ref_id for c in bb.draft.citations}
+    cited = {markers[m] for c in lim.claims for m in c.citation_markers}
+    assert caveated <= cited
+
+
 async def test_analysis_guard_gap_without_data(plan) -> None:
     bb = Blackboard(run_id="r", plan=plan)  # no retrieval data
     bb = await AnalysisAgent().run(bb)
@@ -206,6 +232,25 @@ def test_mechanical_check_passes_when_grounded() -> None:
         [Citation(marker="[A1]", ref_id="real-id", kind="analysis")],
     )
     assert mechanical_check(draft, known_ids={"real-id"}) == []
+
+
+def test_mechanical_check_flags_caveat_missing_from_limitations() -> None:
+    draft = _draft_with(
+        CitedClaim(text="SST vs SSB r=0.3.", citation_markers=["[A1]"], is_quantitative=True),
+        [Citation(marker="[A1]", ref_id="assoc-1", kind="analysis")],
+    )
+    notes = mechanical_check(draft, known_ids={"assoc-1"}, caveated_ids={"assoc-1"})
+    assert any(n.category == "missing_uncertainty" and n.severity == "major" for n in notes)
+
+    draft.sections.append(
+        ReportSection(
+            title="Limitations",
+            claims=[
+                CitedClaim(text="Short series.", citation_markers=["[A1]"], is_quantitative=True)
+            ],
+        )
+    )
+    assert mechanical_check(draft, known_ids={"assoc-1"}, caveated_ids={"assoc-1"}) == []
 
 
 async def test_critic_revises_dangling_then_passes_clean(blackboard) -> None:

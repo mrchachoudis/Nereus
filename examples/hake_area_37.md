@@ -1,8 +1,8 @@
-# Fisheries Research Report - run `20260710T115836-a3c812`
+# Fisheries Research Report - run `20261026T221758-7633da`
 
 **Question:** Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020
 
-*Generated: 2026-07-10T11:58:37.093825+00:00*
+*Generated: 2026-10-26T22:17:59.401127+00:00*
 
 **Scope:** Merluccius merluccius | areas 37.2 | 2010–2020
 
@@ -30,7 +30,7 @@ This report addresses: Assess stock status and environmental drivers of European
 
 ## Methods
 
-Trends were tested with the Mann-Kendall test and Theil-Sen slope; stock status was classified against MSY reference points (Kobe quadrants); covariate associations used lagged cross-correlation with a Bonferroni-adjusted p-value. All statistics are computed by deterministic, unit-tested functions; associations are not causal.
+Trends were tested with the Mann-Kendall test and Theil-Sen slope; stock status was classified against MSY reference points (Kobe quadrants); covariate associations used lagged cross-correlation of linearly detrended series, with p-values based on an autocorrelation-adjusted effective sample size (Pyper & Peterman 1998) and Bonferroni-adjusted over the lags tested. All statistics are computed by deterministic, unit-tested functions; associations are not causal.
 
 ## Results
 
@@ -40,10 +40,10 @@ As of 2020, Merluccius merluccius in 37.2 is classified 'both': biomass below B_
 
 ## Environmental drivers
 
-SST lags landings by 1 yr at peak association (r=-0.97, Bonferroni-adjusted p=3.73e-05). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=10 aligned observations. [A4]
-SST lags SSB by 1 yr at peak association (r=-0.98, Bonferroni-adjusted p=1.34e-05). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=10 aligned observations. [A5]
-CHLOR_A is concurrent with landings at peak association (r=0.83, Bonferroni-adjusted p=0.0139). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=11 aligned observations. [A6]
-CHLOR_A lags SSB by 4 yr at peak association (r=0.87, Bonferroni-adjusted p=0.098). Associational only - not causal. Best lag selected post hoc over 9 lags; reported p adjusted by Bonferroni (×9). n=7 aligned observations. [A7]
+No significant association between SST and landings after detrending; the strongest lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (×9). [A4]
+No significant association between SST and SSB after detrending; the strongest lag is with SST lagging SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.90). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.3 of n=8) and is Bonferroni-adjusted (×9). [A5]
+No significant association between CHLOR_A and landings after detrending; the strongest lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (×9). [A6]
+No significant association between CHLOR_A and SSB after detrending; the strongest lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (×9). [A7]
 
 ## Literature
 
@@ -52,7 +52,17 @@ The literature includes "Mediterranean sea surface temperature trends 2000–202
 
 ## Limitations
 
-No major limitations identified.
+Landings trend in 37.2: only 11 years, so Mann-Kendall has low power to detect a trend. [A1]
+SSB trend in 37.2: only 11 years, so Mann-Kendall has low power to detect a trend. [A2]
+Stock status in 37.2 is based on the terminal assessment year (2020) only, with no uncertainty on B/B_MSY or F/F_MSY. [A3]
+SST vs landings in 37.2: the raw correlation (r=-0.83) reverses sign after detrending (r=0.44), so it reflects shared trends, not year-to-year co-variation. [A4]
+SST vs landings in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A4]
+SST vs SSB in 37.2: the raw correlation (r=-0.90) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends. [A5]
+SST vs SSB in 37.2: only 8 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A5]
+CHLOR_A vs landings in 37.2: the raw correlation (r=0.56) reverses sign after detrending (r=-0.48), so it reflects shared trends, not year-to-year co-variation. [A6]
+CHLOR_A vs landings in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A6]
+CHLOR_A vs SSB in 37.2: the raw correlation (r=0.55) reverses sign after detrending (r=-0.54), so it reflects shared trends, not year-to-year co-variation. [A7]
+CHLOR_A vs SSB in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A7]
 
 ## Citations
 
@@ -72,10 +82,10 @@ No major limitations identified.
 
 | Source | Query/URL | Retrieved | # records |
 |---|---|---|---|
-| sample_landings | sample_landings | 2026-07-10 | 11 |
-| sample_assessment | sample_assessment | 2026-07-10 | 11 |
-| sample_ocean | sample_ocean | 2026-07-10 | 2 |
-| sample_literature | sample_literature | 2026-07-10 | 2 |
+| sample_landings | sample_landings | 2026-10-26 | 11 |
+| sample_assessment | sample_assessment | 2026-10-26 | 11 |
+| sample_ocean | sample_ocean | 2026-10-26 | 2 |
+| sample_literature | sample_literature | 2026-10-26 | 2 |
 
 ---
 

@@ -16,6 +16,7 @@ from fra.analysis import (
     seasonal_mann_kendall,
     theil_sen,
 )
+from fra.analysis.association import autocorrelation, correlation_p_value, effective_n
 
 
 def _rng() -> np.random.Generator:
@@ -140,3 +141,99 @@ def test_status_direct_ratios() -> None:
         f_ratio_direct=1.2,
     )
     assert k.status == "both"
+
+
+# -- spurious correlation guards ------------------------------------------------
+
+
+def test_association_independent_trends_not_significant() -> None:
+    """Two unrelated series that both trend must not come out as associated."""
+    rng = _rng()
+    t = np.arange(30)
+    sst = 18.0 + 0.1 * t + rng.normal(0, 0.3, 30)
+    ssb = 50000.0 - 900.0 * t + rng.normal(0, 1500, 30)
+
+    from scipy import stats
+
+    # Naive Pearson on the raw series (the old behaviour) calls this a sure thing.
+    r_naive, p_naive = stats.pearsonr(sst, ssb)
+    assert r_naive < -0.9
+    assert p_naive < 1e-6
+
+    # Without detrending, the effective-n correction alone already removes it.
+    raw = lagged_association(list(sst), list(ssb), max_lag=4, detrend="none")
+    assert raw.n_effective < 10
+    assert raw.best_p_value_adjusted > 0.05
+
+    lp = lagged_association(list(sst), list(ssb), max_lag=4)
+    assert lp.raw_r < -0.8  # raw r at the chosen lag is still trend-dominated
+    assert lp.best_p_value_adjusted > 0.05
+    assert "detrended" in lp.caveat
+
+
+def test_association_recovers_lag_under_trends() -> None:
+    """A real lagged signal on top of unrelated trends is still found."""
+    rng = _rng()
+    t = np.arange(40)
+    signal = rng.normal(0, 1, 40)
+    cov = 0.05 * t + signal
+    metric = np.empty(40)
+    metric[:2] = rng.normal(0, 1, 2)
+    metric[2:] = 1.2 * signal[:-2] + rng.normal(0, 0.2, 38)
+    metric -= 0.3 * t
+    lp = lagged_association(list(cov), list(metric), max_lag=4)
+    assert lp.best_lag == 2
+    assert lp.best_r > 0.8
+    assert lp.best_p_value_adjusted < 0.01
+
+
+def test_association_first_difference() -> None:
+    rng = _rng()
+    cov = np.cumsum(rng.normal(0, 1, 30))
+    metric = 2.0 * cov + rng.normal(0, 0.1, 30)
+    lp = lagged_association(list(cov), list(metric), max_lag=3, detrend="difference")
+    assert lp.detrend == "difference"
+    assert lp.best_lag == 0
+    assert lp.n_obs == 29  # differencing drops one point
+    assert lp.best_r > 0.9
+
+
+def test_effective_n_white_noise_close_to_n() -> None:
+    rng = _rng()
+    x, y = rng.normal(0, 1, 200), rng.normal(0, 1, 200)
+    assert effective_n(x, y) > 150
+
+
+def test_effective_n_shrinks_for_autocorrelated_series() -> None:
+    rng = _rng()
+
+    def ar1(phi: float, n: int) -> np.ndarray:
+        out = np.zeros(n)
+        for i in range(1, n):
+            out[i] = phi * out[i - 1] + rng.normal()
+        return out
+
+    n_star = effective_n(ar1(0.9, 200), ar1(0.9, 200))
+    assert 3.0 <= n_star < 100
+
+
+def test_effective_n_bounds() -> None:
+    x = np.array([1.0, -1.0] * 5)  # alternating: negative autocorrelation
+    assert effective_n(x, x) <= x.size
+    smooth = np.linspace(0, 1, 10) ** 2
+    assert effective_n(smooth, smooth) >= 3.0
+
+
+def test_correlation_p_value_matches_scipy_at_full_n() -> None:
+    from scipy import stats
+
+    rng = _rng()
+    a, b = rng.normal(0, 1, 25), rng.normal(0, 1, 25)
+    b = 0.5 * a + b
+    r, p = stats.pearsonr(a, b)
+    assert correlation_p_value(float(r), 25.0) == pytest.approx(float(p), rel=1e-6)
+
+
+def test_autocorrelation_rejects_bad_lag() -> None:
+    with pytest.raises(ValueError):
+        autocorrelation(np.arange(5, dtype=float), 5)

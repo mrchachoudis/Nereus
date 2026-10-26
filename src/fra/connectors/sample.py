@@ -28,13 +28,15 @@ from fra.models import (
 _HAKE = Taxon(scientific_name="Merluccius merluccius", aphia_id=126484, common_name="European hake")
 
 
-def _jitter(i: int, amp: float, phase: float = 0.0) -> float:
+def _jitter(i: int, amp: float, phase: float = 0.0, freq: float = 1.7) -> float:
     """Deterministic pseudo-noise so synthetic series aren't perfectly collinear.
 
     Keeps the sample data reproducible (no RNG) while making correlations
-    realistic (|r| < 1) and p-values non-degenerate.
+    realistic (|r| < 1) and p-values non-degenerate. The ocean series use their
+    own frequencies: noise sharing one frequency lines up at some lag and fakes a
+    strong lagged correlation even after detrending.
     """
-    return amp * math.sin(1.7 * i + phase)
+    return amp * math.sin(freq * i + phase)
 
 
 def _area(plan: ResearchPlan) -> SpatialUnit:
@@ -111,7 +113,7 @@ class SampleOceanConnector:
         sst = [
             TimePoint(
                 date=date(y, 7, 1),
-                value=round(18.4 + 0.11 * i + _jitter(i, 0.18, 2.0), 3),
+                value=round(18.4 + 0.11 * i + _jitter(i, 0.18, 2.0, freq=2.3), 3),
                 qc_flag=1,
             )
             for i, y in enumerate(years)
@@ -119,7 +121,7 @@ class SampleOceanConnector:
         chl = [
             TimePoint(
                 date=date(y, 7, 1),
-                value=round(0.42 - 0.006 * i + _jitter(i, 0.03, 0.7), 4),
+                value=round(0.42 - 0.006 * i + _jitter(i, 0.03, 0.7, freq=1.1), 4),
                 qc_flag=1,
             )
             for i, y in enumerate(years)
