@@ -13,8 +13,10 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any
 
+import numpy as np
+
 from fra.agents.base import BaseAgent, GuardResult
-from fra.analysis import classify_status, lagged_association, mann_kendall
+from fra.analysis import LagProfile, classify_status, lagged_association, mann_kendall
 from fra.blackboard import Blackboard
 from fra.models import (
     AnalysisResult,
@@ -24,6 +26,8 @@ from fra.models import (
 )
 
 _MIN_POINTS = 5  # below this a trend/association test is not meaningful
+_SHORT_SERIES = 15  # below this, tests run but have low power; flagged as a caveat
+_STRONG_RAW_R = 0.5  # raw |r| above this that vanishes after detrending is trend-driven
 
 
 class AnalysisAgent(BaseAgent):
@@ -77,6 +81,7 @@ class AnalysisAgent(BaseAgent):
                         f"95% CI [{tr.slope_ci[0]:.1f}, {tr.slope_ci[1]:.1f}])."
                     ),
                     inputs=[r.id for r in recs],
+                    caveats=_short_trend_caveat(f"Landings trend in {area}", tr.n),
                     detail={"trend": tr.trend, "z": tr.z, "n": float(tr.n), "unit": "tonnes/yr"},
                 )
             )
@@ -105,6 +110,7 @@ class AnalysisAgent(BaseAgent):
                         f"(Mann-Kendall p={tr.p_value:.3g}; Theil-Sen slope {tr.slope:.1f}/yr)."
                     ),
                     inputs=[r.id for r in usable],
+                    caveats=_short_trend_caveat(f"SSB trend in {area}", tr.n),
                     detail={"trend": tr.trend, "z": tr.z, "n": float(tr.n)},
                 )
             )
@@ -127,8 +133,14 @@ class AnalysisAgent(BaseAgent):
             interp = (
                 f"As of {latest.year}, {taxon} in {area} is classified '{k.status}': {k.reason}."
             )
+            caveats: list[str] = []
             if k.status == "unknown":
                 interp += " Reference points are incomplete, so no Kobe classification is made."
+            else:
+                caveats.append(
+                    f"Stock status in {area} is based on the terminal assessment year "
+                    f"({latest.year}) only, with no uncertainty on B/B_MSY or F/F_MSY."
+                )
             out.append(
                 AnalysisResult(
                     id=f"status-{_slug(taxon)}-{area}",
@@ -140,6 +152,7 @@ class AnalysisAgent(BaseAgent):
                     effect_size=k.b_ratio,
                     interpretation=interp,
                     inputs=[latest.id],
+                    caveats=caveats,
                     detail={
                         "status": k.status,
                         "b_ratio": _num(k.b_ratio),
@@ -170,39 +183,89 @@ class AnalysisAgent(BaseAgent):
                     lp = lagged_association(cov_vals, met_vals, max_lag=max_lag)
                 except ValueError:
                     continue
-                if lp.best_lag > 0:
-                    phrase = f"{cov.variable.upper()} leads {metric_name} by {lp.best_lag} yr"
-                elif lp.best_lag < 0:
-                    phrase = f"{cov.variable.upper()} lags {metric_name} by {abs(lp.best_lag)} yr"
-                else:
-                    phrase = f"{cov.variable.upper()} is concurrent with {metric_name}"
+                target = f"{cov.variable.upper()} vs {metric_name} in {cov.area.fao_area}"
                 out.append(
                     AnalysisResult(
                         id=f"assoc-{cov.variable}-{metric_name}-{cov.area.fao_area}",
                         kind="association",
-                        target=f"{cov.variable.upper()} vs {metric_name} in {cov.area.fao_area}",
+                        target=target,
                         statistic=lp.best_r,
                         p_value=lp.best_p_value_adjusted,
                         confidence_interval=None,
                         effect_size=lp.slope,
-                        interpretation=(
-                            f"{phrase} at peak association (r={lp.best_r:.2f}, "
-                            f"Bonferroni-adjusted p={lp.best_p_value_adjusted:.3g}). {lp.caveat}"
-                        ),
+                        interpretation=self._association_text(cov.variable, metric_name, lp),
                         inputs=[cov.id, *input_ids],
+                        caveats=self._association_caveats(target, lp),
                         detail={
                             "best_lag": float(lp.best_lag),
                             "r": lp.best_r,
+                            "raw_r": lp.raw_r,
+                            "detrend": lp.detrend,
                             "lags": lp.lags,
                             "correlations": lp.correlations,
-                            "n_effective": float(lp.n_effective),
+                            "p_values": lp.p_values,
+                            "n_obs": float(lp.n_obs),
+                            "n_effective": lp.n_effective,
                         },
                     )
                 )
         return out
 
+    def _association_text(self, variable: str, metric_name: str, lp: LagProfile) -> str:
+        cov = variable.upper()
+        if lp.best_lag > 0:
+            where = f"with {cov} leading {metric_name} by {lp.best_lag} yr"
+        elif lp.best_lag < 0:
+            where = f"with {cov} lagging {metric_name} by {abs(lp.best_lag)} yr"
+        else:
+            where = "with no lag"
+        stats_text = (
+            f"detrended r={lp.best_r:.2f}, Bonferroni-adjusted p={lp.best_p_value_adjusted:.3g}"
+        )
+        if lp.best_p_value_adjusted < self._alpha:
+            head = f"{cov} and {metric_name} are associated at peak {where} ({stats_text})."
+        else:
+            head = (
+                f"No significant association between {cov} and {metric_name} after "
+                f"detrending; the best-supported lag is {where} ({stats_text})."
+            )
+        return f"{head} {lp.caveat}"
+
+    def _association_caveats(self, target: str, lp: LagProfile) -> list[str]:
+        caveats: list[str] = []
+        significant = lp.best_p_value_adjusted < self._alpha
+        if abs(lp.raw_r) >= _STRONG_RAW_R and np.sign(lp.raw_r) != np.sign(lp.best_r):
+            caveats.append(
+                f"{target}: the raw correlation (r={lp.raw_r:.2f}) reverses sign after "
+                f"detrending (r={lp.best_r:.2f}), so it reflects shared trends, not "
+                "year-to-year co-variation."
+            )
+        elif abs(lp.raw_r) >= _STRONG_RAW_R and not significant:
+            caveats.append(
+                f"{target}: the raw correlation (r={lp.raw_r:.2f}) is not significant after "
+                f"detrending (adjusted p={lp.best_p_value_adjusted:.3g}), so it mostly "
+                "reflects shared trends."
+            )
+        if lp.n_obs < _SHORT_SERIES:
+            caveats.append(
+                f"{target}: only {lp.n_obs} aligned years, and the lag was picked after the "
+                "fact, so the test has low power and the best lag is unstable."
+            )
+        if lp.n_effective < 0.6 * lp.n_obs:
+            caveats.append(
+                f"{target}: strong autocorrelation leaves an effective sample size of "
+                f"N*={lp.n_effective:.1f} out of {lp.n_obs} years."
+            )
+        return caveats
+
 
 # -- helpers -----------------------------------------------------------------
+
+
+def _short_trend_caveat(label: str, n: int) -> list[str]:
+    if n >= _SHORT_SERIES:
+        return []
+    return [f"{label}: only {n} years, so Mann-Kendall has low power to detect a trend."]
 
 
 def _group(records: list[Any]) -> dict[tuple[str, str], list[Any]]:

@@ -71,7 +71,7 @@ loop.
 | **Planner** | Breaks the question down into a typed `ResearchPlan` covering species, area, time range, domains, and sub-questions. Asks for clarification when the question is under-specified. |
 | **Data Retrieval** | Fetches landings and stock-assessment records, then normalizes units, taxonomy (WoRMS AphiaID), and spatial codes (FAO areas and GFCM GSAs). |
 | **Oceanography** | Fetches environmental covariates like SST and chlorophyll-a for the plan's space-time box, then aggregates gridded data to annual resolution. |
-| **Analysis** | The deterministic core. Runs Mann-Kendall plus Theil-Sen trends, Kobe stock-status classification, and lagged covariate association. It reports effect sizes, p-values, and confidence intervals rather than bare point estimates. |
+| **Analysis** | The deterministic core. Runs Mann-Kendall plus Theil-Sen trends, Kobe stock-status classification, and lagged covariate association on detrended series. It reports effect sizes, p-values, and confidence intervals rather than bare point estimates, and attaches caveats (short series, trend-driven correlations) that the report must list under Limitations. |
 | **Literature** | Retrieves and ranks primary literature from Crossref and OpenAlex, and de-duplicates by DOI. |
 | **Synthesis** | Composes the cited report and enforces the grounding rule, so every quantitative sentence carries a citation to a real record or analysis ID. |
 | **Critic** | Adversarially reviews the draft. It mechanically verifies that every citation resolves and every quantitative claim is cited, and adds an LLM review that looks for overconfidence and missing uncertainty. It loops with Synthesis up to the cap. |
@@ -211,6 +211,16 @@ critique, but it never does the arithmetic.
 **Deterministic core.** All statistics are pure, unit-tested functions
 (`fra/analysis/`), verified on synthetic series with known trends and lags. The
 same functions power both the analysis agent and the figures.
+
+**No correlations from shared trends.** Warming SST and a declining stock will
+correlate at r ≈ -0.9 whether or not they're related. Covariate associations are
+computed on linearly detrended series, and their p-values use the autocorrelation-
+adjusted effective sample size N* of Pyper & Peterman (1998) rather than the raw
+count of years, then a Bonferroni correction over the lags tested. The best lag is
+the one with the lowest p-value, not the largest |r|, which would favour long lags
+with few overlapping years. The raw correlation is kept in the audit trail for
+comparison. Results from short series or trend-driven correlations carry caveats,
+and the Critic sends a draft back if any caveat is missing from Limitations.
 
 **Gaps are data.** Missing coverage is recorded and surfaced under *Limitations*,
 never fabricated.

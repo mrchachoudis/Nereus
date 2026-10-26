@@ -9,6 +9,7 @@ recorded JSON responses backs the mocks and documents real payload shapes.
 from __future__ import annotations
 
 import json
+import math
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -67,7 +68,8 @@ def landings(hake: Taxon, area_37_2: SpatialUnit) -> list[LandingsRecord]:
                 taxon=hake,
                 area=area_37_2,
                 year=year,
-                tonnes=base - i * 600,
+                # small deterministic noise so detrended series aren't flat
+                tonnes=base - i * 600 + 150 * math.sin(1.3 * i),
                 gear="bottom trawl",
                 source="fao_landings",
                 source_ref=f"FAO:37.2:hake:{year}",
@@ -101,7 +103,11 @@ def assessments(hake: Taxon, area_37_2: SpatialUnit) -> list[AssessmentRecord]:
 @pytest.fixture
 def covariate(area_37_2: SpatialUnit) -> CovariateSeries:
     values = [
-        TimePoint(date=date(y, 7, 1), value=18.0 + 0.15 * (y - 2010), qc_flag=1)
+        TimePoint(
+            date=date(y, 7, 1),
+            value=18.0 + 0.15 * (y - 2010) + 0.1 * math.sin(2.1 * (y - 2010) + 0.5),
+            qc_flag=1,
+        )
         for y in range(2010, 2021)
     ]
     return CovariateSeries(
