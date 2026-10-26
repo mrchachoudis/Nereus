@@ -1,6 +1,6 @@
 {
   "final_report": {
-    "run_id": "20261026T221758-7633da",
+    "run_id": "20261026T224140-98598a",
     "question": "Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020",
     "plan": {
       "question": "Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020",
@@ -106,28 +106,28 @@
         "title": "Environmental drivers",
         "claims": [
           {
-            "text": "No significant association between SST and landings after detrending; the strongest lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (\u00d79).",
+            "text": "No significant association between SST and landings after detrending; the best-supported lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (\u00d79).",
             "citation_markers": [
               "[A4]"
             ],
             "is_quantitative": true
           },
           {
-            "text": "No significant association between SST and SSB after detrending; the strongest lag is with SST lagging SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.90). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.3 of n=8) and is Bonferroni-adjusted (\u00d79).",
+            "text": "No significant association between SST and SSB after detrending; the best-supported lag is with SST leading SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.88). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.7 of n=8) and is Bonferroni-adjusted (\u00d79).",
             "citation_markers": [
               "[A5]"
             ],
             "is_quantitative": true
           },
           {
-            "text": "No significant association between CHLOR_A and landings after detrending; the strongest lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
+            "text": "No significant association between CHLOR_A and landings after detrending; the best-supported lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
             "citation_markers": [
               "[A6]"
             ],
             "is_quantitative": true
           },
           {
-            "text": "No significant association between CHLOR_A and SSB after detrending; the strongest lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
+            "text": "No significant association between CHLOR_A and SSB after detrending; the best-supported lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
             "citation_markers": [
               "[A7]"
             ],
@@ -193,7 +193,7 @@
             "is_quantitative": true
           },
           {
-            "text": "SST vs SSB in 37.2: the raw correlation (r=-0.90) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends.",
+            "text": "SST vs SSB in 37.2: the raw correlation (r=-0.88) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends.",
             "citation_markers": [
               "[A5]"
             ],
@@ -329,7 +329,7 @@
       "Stock status in 37.2 is based on the terminal assessment year (2020) only, with no uncertainty on B/B_MSY or F/F_MSY.",
       "SST vs landings in 37.2: the raw correlation (r=-0.83) reverses sign after detrending (r=0.44), so it reflects shared trends, not year-to-year co-variation.",
       "SST vs landings in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable.",
-      "SST vs SSB in 37.2: the raw correlation (r=-0.90) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends.",
+      "SST vs SSB in 37.2: the raw correlation (r=-0.88) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends.",
       "SST vs SSB in 37.2: only 8 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable.",
       "CHLOR_A vs landings in 37.2: the raw correlation (r=0.56) reverses sign after detrending (r=-0.48), so it reflects shared trends, not year-to-year co-variation.",
       "CHLOR_A vs landings in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable.",
@@ -337,13 +337,13 @@
       "CHLOR_A vs SSB in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable."
     ],
     "outstanding_critic_notes": [],
-    "generated_at": "2026-10-26T22:17:59.401127Z"
+    "generated_at": "2026-10-26T22:41:41.200602Z"
   },
   "provenance": [
     {
       "source": "sample_landings",
       "url_or_query": "sample_landings",
-      "retrieved_at": "2026-10-26T22:17:58.797425Z",
+      "retrieved_at": "2026-10-26T22:41:40.561771Z",
       "record_ids": [
         "sample_landings-2010",
         "sample_landings-2011",
@@ -362,7 +362,7 @@
     {
       "source": "sample_assessment",
       "url_or_query": "sample_assessment",
-      "retrieved_at": "2026-10-26T22:17:58.797443Z",
+      "retrieved_at": "2026-10-26T22:41:40.561784Z",
       "record_ids": [
         "sample_assessment-2010",
         "sample_assessment-2011",
@@ -381,7 +381,7 @@
     {
       "source": "sample_ocean",
       "url_or_query": "sample_ocean",
-      "retrieved_at": "2026-10-26T22:17:58.797477Z",
+      "retrieved_at": "2026-10-26T22:41:40.561810Z",
       "record_ids": [
         "sample_ocean-sst-37.2",
         "sample_ocean-chl-37.2"
@@ -391,7 +391,7 @@
     {
       "source": "sample_literature",
       "url_or_query": "sample_literature",
-      "retrieved_at": "2026-10-26T22:17:58.797495Z",
+      "retrieved_at": "2026-10-26T22:41:40.561824Z",
       "record_ids": [
         "sample_lit-1",
         "sample_lit-2"
@@ -500,7 +500,7 @@
       "p_value": 1.0,
       "confidence_interval": null,
       "effect_size": 508.9001561996177,
-      "interpretation": "No significant association between SST and landings after detrending; the strongest lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (\u00d79).",
+      "interpretation": "No significant association between SST and landings after detrending; the best-supported lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (\u00d79).",
       "inputs": [
         "sample_ocean-sst-37.2",
         "sample_landings-2010",
@@ -565,11 +565,11 @@
       "id": "assoc-sst-SSB-37.2",
       "kind": "association",
       "target": "SST vs SSB in 37.2",
-      "statistic": -0.28068525870738253,
+      "statistic": -0.2764495596684366,
       "p_value": 1.0,
       "confidence_interval": null,
-      "effect_size": -1093.149351977185,
-      "interpretation": "No significant association between SST and SSB after detrending; the strongest lag is with SST lagging SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.90). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.3 of n=8) and is Bonferroni-adjusted (\u00d79).",
+      "effect_size": -996.3836970262947,
+      "interpretation": "No significant association between SST and SSB after detrending; the best-supported lag is with SST leading SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.88). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.7 of n=8) and is Bonferroni-adjusted (\u00d79).",
       "inputs": [
         "sample_ocean-sst-37.2",
         "sample_assessment-2010",
@@ -585,13 +585,13 @@
         "sample_assessment-2020"
       ],
       "caveats": [
-        "SST vs SSB in 37.2: the raw correlation (r=-0.90) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends.",
+        "SST vs SSB in 37.2: the raw correlation (r=-0.88) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends.",
         "SST vs SSB in 37.2: only 8 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable."
       ],
       "detail": {
-        "best_lag": -3.0,
-        "r": -0.28068525870738253,
-        "raw_r": -0.8959836371691983,
+        "best_lag": 3.0,
+        "r": -0.2764495596684366,
+        "raw_r": -0.8807207417334167,
         "detrend": "linear",
         "lags": [
           -4,
@@ -627,7 +627,7 @@
           0.8123197617028598
         ],
         "n_obs": 8.0,
-        "n_effective": 6.336489628614161
+        "n_effective": 6.652240523917341
       }
     },
     {
@@ -638,7 +638,7 @@
       "p_value": 1.0,
       "confidence_interval": null,
       "effect_size": -3419.5688190856786,
-      "interpretation": "No significant association between CHLOR_A and landings after detrending; the strongest lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
+      "interpretation": "No significant association between CHLOR_A and landings after detrending; the best-supported lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
       "inputs": [
         "sample_ocean-chl-37.2",
         "sample_landings-2010",
@@ -707,7 +707,7 @@
       "p_value": 1.0,
       "confidence_interval": null,
       "effect_size": -12812.616221481572,
-      "interpretation": "No significant association between CHLOR_A and SSB after detrending; the strongest lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
+      "interpretation": "No significant association between CHLOR_A and SSB after detrending; the best-supported lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (\u00d79).",
       "inputs": [
         "sample_ocean-chl-37.2",
         "sample_assessment-2010",

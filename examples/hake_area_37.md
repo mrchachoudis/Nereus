@@ -1,8 +1,8 @@
-# Fisheries Research Report - run `20261026T221758-7633da`
+# Fisheries Research Report - run `20261026T224140-98598a`
 
 **Question:** Assess stock status and environmental drivers of European hake in FAO 37.2, 2010-2020
 
-*Generated: 2026-10-26T22:17:59.401127+00:00*
+*Generated: 2026-10-26T22:41:41.200602+00:00*
 
 **Scope:** Merluccius merluccius | areas 37.2 | 2010–2020
 
@@ -40,10 +40,10 @@ As of 2020, Merluccius merluccius in 37.2 is classified 'both': biomass below B_
 
 ## Environmental drivers
 
-No significant association between SST and landings after detrending; the strongest lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (×9). [A4]
-No significant association between SST and SSB after detrending; the strongest lag is with SST lagging SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.90). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.3 of n=8) and is Bonferroni-adjusted (×9). [A5]
-No significant association between CHLOR_A and landings after detrending; the strongest lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (×9). [A6]
-No significant association between CHLOR_A and SSB after detrending; the strongest lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Best lag selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (×9). [A7]
+No significant association between SST and landings after detrending; the best-supported lag is with SST lagging landings by 4 yr (detrended r=0.44, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.83). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=5.7 of n=7) and is Bonferroni-adjusted (×9). [A4]
+No significant association between SST and SSB after detrending; the best-supported lag is with SST leading SSB by 3 yr (detrended r=-0.28, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=-0.88). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=6.7 of n=8) and is Bonferroni-adjusted (×9). [A5]
+No significant association between CHLOR_A and landings after detrending; the best-supported lag is with CHLOR_A lagging landings by 4 yr (detrended r=-0.48, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.56). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (×9). [A6]
+No significant association between CHLOR_A and SSB after detrending; the best-supported lag is with CHLOR_A leading SSB by 4 yr (detrended r=-0.54, Bonferroni-adjusted p=1). Associational only - not causal. Both series linearly detrended before correlating (raw r=0.55). Lag with the lowest p selected post hoc over 9 lags; reported p uses an autocorrelation-adjusted effective sample size (N*=7.0 of n=7) and is Bonferroni-adjusted (×9). [A7]
 
 ## Literature
 
@@ -57,7 +57,7 @@ SSB trend in 37.2: only 11 years, so Mann-Kendall has low power to detect a tren
 Stock status in 37.2 is based on the terminal assessment year (2020) only, with no uncertainty on B/B_MSY or F/F_MSY. [A3]
 SST vs landings in 37.2: the raw correlation (r=-0.83) reverses sign after detrending (r=0.44), so it reflects shared trends, not year-to-year co-variation. [A4]
 SST vs landings in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A4]
-SST vs SSB in 37.2: the raw correlation (r=-0.90) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends. [A5]
+SST vs SSB in 37.2: the raw correlation (r=-0.88) is not significant after detrending (adjusted p=1), so it mostly reflects shared trends. [A5]
 SST vs SSB in 37.2: only 8 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A5]
 CHLOR_A vs landings in 37.2: the raw correlation (r=0.56) reverses sign after detrending (r=-0.48), so it reflects shared trends, not year-to-year co-variation. [A6]
 CHLOR_A vs landings in 37.2: only 7 aligned years, and the lag was picked after the fact, so the test has low power and the best lag is unstable. [A6]

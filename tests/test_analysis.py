@@ -237,3 +237,18 @@ def test_correlation_p_value_matches_scipy_at_full_n() -> None:
 def test_autocorrelation_rejects_bad_lag() -> None:
     with pytest.raises(ValueError):
         autocorrelation(np.arange(5, dtype=float), 5)
+
+
+def test_association_picks_lowest_p_not_largest_r() -> None:
+    """Max |r| favours the longest lags (fewest points); lowest p does not."""
+    hits_new = hits_old = 0
+    for seed in range(300):
+        rng = np.random.default_rng(seed)
+        x = rng.normal(0, 1, 12)
+        y = 0.8 * x + rng.normal(0, 1, 12)  # true association at lag 0
+        lp = lagged_association(list(x), list(y), max_lag=4)
+        assert lp.best_p_value == min(lp.p_values)
+        old_lag = lp.lags[int(np.argmax(np.abs(lp.correlations)))]
+        hits_new += lp.best_lag == 0
+        hits_old += old_lag == 0
+    assert hits_new > hits_old

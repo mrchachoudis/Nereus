@@ -227,7 +227,7 @@ class AnalysisAgent(BaseAgent):
         else:
             head = (
                 f"No significant association between {cov} and {metric_name} after "
-                f"detrending; the strongest lag is {where} ({stats_text})."
+                f"detrending; the best-supported lag is {where} ({stats_text})."
             )
         return f"{head} {lp.caveat}"
 

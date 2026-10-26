@@ -1,7 +1,8 @@
 """Lagged association between an environmental covariate and a stock metric.
 
 Computes the cross-correlation of ``covariate`` against ``metric`` over a range
-of lags, reports the lag maximizing |r| together with the full lag profile, and
+of lags, reports the lag with the lowest p-value together with the full lag
+profile, and
 fits a simple linear model at the best lag. This layer is strictly
 *associational*: the interpretation text must never use causal language, and the
 best-lag correlation is flagged with a multiple-comparison caveat because it is
@@ -143,8 +144,8 @@ def lagged_association(
     """Cross-correlate ``covariate`` vs ``metric`` over ``±max_lag`` steps.
 
     Both series must be equal length and evenly spaced. Each is detrended first
-    (see :func:`remove_trend`). Returns the lag with the largest absolute Pearson
-    correlation, the full profile, p-values based on the effective sample size,
+    (see :func:`remove_trend`). Returns the lag with the lowest p-value (ties broken
+    by larger |r|, then the shorter lag), the full profile, p-values based on the effective sample size,
     and a Bonferroni adjustment over the number of lags tested. Raises
     ``ValueError`` if the series are too short to leave ``min_overlap`` aligned
     points at ``max_lag``.
@@ -182,7 +183,10 @@ def lagged_association(
     if not lags:
         raise ValueError("no lag produced a valid (non-degenerate) overlap")
 
-    best_idx = int(np.argmax(np.abs(corrs)))
+    # Pick by p-value, not by |r|: longer lags leave fewer overlapping years, and
+    # r from fewer points is noisier, so the largest |r| tends to sit at the
+    # extreme lag. The p-value accounts for the overlap (via N*).
+    best_idx = min(range(len(lags)), key=lambda i: (pvals[i], -abs(corrs[i]), abs(lags[i])))
     best_lag = lags[best_idx]
     best_r = corrs[best_idx]
     best_p = pvals[best_idx]
@@ -206,8 +210,8 @@ def lagged_association(
     }[detrend]
     caveat = (
         f"Associational only - not causal. {method_text.capitalize()} before correlating "
-        f"(raw r={raw_r:.2f}). Best lag selected post hoc over {n_tested} lags; reported p "
-        f"uses an autocorrelation-adjusted effective sample size (N*={n_star_best:.1f} of "
+        f"(raw r={raw_r:.2f}). Lag with the lowest p selected post hoc over {n_tested} "
+        f"lags; reported p uses an autocorrelation-adjusted effective sample size (N*={n_star_best:.1f} of "
         f"n={a.size}) and is Bonferroni-adjusted (×{n_tested})."
     )
 

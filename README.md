@@ -214,12 +214,13 @@ same functions power both the analysis agent and the figures.
 
 **No correlations from shared trends.** Warming SST and a declining stock will
 correlate at r ≈ -0.9 whether or not they're related. Covariate associations are
-computed on linearly detrended series, and their p-values use the
-autocorrelation-adjusted effective sample size N* of Pyper & Peterman (1998) rather
-than the raw count of years, then a Bonferroni correction over the lags tested. The
-raw correlation is kept in the audit trail for comparison. Results from short series
-or trend-driven correlations carry caveats, and the Critic sends a draft back if any
-caveat is missing from Limitations.
+computed on linearly detrended series, and their p-values use the autocorrelation-
+adjusted effective sample size N* of Pyper & Peterman (1998) rather than the raw
+count of years, then a Bonferroni correction over the lags tested. The best lag is
+the one with the lowest p-value, not the largest |r|, which would favour long lags
+with few overlapping years. The raw correlation is kept in the audit trail for
+comparison. Results from short series or trend-driven correlations carry caveats,
+and the Critic sends a draft back if any caveat is missing from Limitations.
 
 **Gaps are data.** Missing coverage is recorded and surfaced under *Limitations*,
 never fabricated.
