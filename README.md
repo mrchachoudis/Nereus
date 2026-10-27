@@ -271,4 +271,4 @@ with non-empty citations and a populated provenance log. CI
 
 ## License
 
-MIT.
+Released under the [MIT License](LICENSE). Copyright (c) 2026 Marios Chachoudis.
